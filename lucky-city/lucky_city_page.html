@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Lucky City</title>
+    <style>
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            margin: 40px;
+            background: linear-gradient(to bottom, #E8F5E9, #C8E6C9);
+        }
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: #FFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2E7D32;
+            font-size: 24px;
+            text-align: center;
+        }
+        p {
+            line-height: 1.8;
+            color: #333;
+            font-size: 16px;
+        }
+        .intro, .manual-info, .disclaimer {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .error {
+            color: #D32F2F;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2E7D32;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background: #2E7D32;
+            color: #FFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1B5E20;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #CCC;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+        .ad {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .ad a {
+            color: #2E7D32;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .ad a:hover {
+            text-decoration: underline;
+        }
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pagination a {
+            margin: 0 10px;
+            color: #2E7D32;
+            text-decoration: none;
+        }
+        .pagination a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function formatDateInput(input) {
+            let value = input.value.replace(/[^0-9]/g, '');
+            if (value.length > 4 && value.length <= 6) {
+                value = value.slice(0, 4) + '-' + value.slice(4);
+            } else if (value.length > 6) {
+                value = value.slice(0, 4) + '-' + value.slice(4, 6) + '-' + value.slice(6, 8);
+            }
+            input.value = value;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Your Lucky City</h1>
+        <p class="intro">
+            For over 3,000 years, Chinese Feng Shui has guided people to find harmony with their surroundings. By matching your birth date with a city’s pivotal moment—like its founding or a major historical shift (think Singapore’s independence in 1965 or Hong Kong’s return to China in 1997)—this tool reveals cities that vibe with your destiny. Ever wonder why some thrive in one city but struggle in another? Like Elon Musk rocking it in Texas but hitting roadblocks in D.C., or Trump’s surprising wins tied to Washington’s energy? Feng Shui says it’s all about cosmic harmony. Curious? Discover your lucky city and see where your stars align!
+        </p>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('index') }}">
+            <div class="form-group">
+                <label for="birth_date">Your Birth Date (YYYYMMDD):</label>
+                <input type="text" id="birth_date" name="birth_date" value="{{ birth_date }}" 
+                       placeholder="e.g., 19900515" maxlength="10" oninput="formatDateInput(this)">
+            </div>
+            <div class="form-group">
+                <label for="country">Select Country:</label>
+                <select id="country" name="country">
+                    <option value="All" {% if selected_country == 'All' %}selected{% endif %}>All</option>
+                    {% for c in countries %}
+                        <option value="{{ c }}" {% if selected_country == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state_country">Select State/Region:</label>
+                <select id="state_country" name="state_country">
+                    {% for s in states %}
+                        <option value="{{ s }}" {% if selected_state == s %}selected{% endif %}>{{ s }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <p class="manual-info">
+                    Our database covers over 3,000 cities’ founding dates, sourced from official records, city histories, and Wikipedia. While we strive for accuracy, some dates may vary. Before settling on your lucky city, double-check its founding or transformative moment—like when a town became a capital, merged with another, or shifted under new rule (e.g., Berlin’s vibe changed after German reunification). Missing a city? Play history detective! Dig into archives for its founding or game-changing date, and see how it aligns with your destiny.
+                </p>
+                <label for="manual_city">Manual City Input - City Name:</label>
+                <input type="text" id="manual_city" name="manual_city" value="{{ manual_city }}" 
+                       placeholder="e.g., Ottawa">
+            </div>
+            <div class="form-group">
+                <label for="manual_date">City Incorporation Date (YYYYMMDD):</label>
+                <input type="text" id="manual_date" name="manual_date" value="{{ manual_date }}" 
+                       placeholder="e.g., 18680903" maxlength="10" oninput="formatDateInput(this)">
+            </div>
+            <button type="submit">Discover Your Lucky City!</button>
+            <button type="button" onclick="window.location.href='{{ url_for('index') }}'">Reset</button>
+        </form>
+
+        {% if user_const or user_element %}
+            <p><strong>Your Constellation:</strong> {{ user_const | translate_constellation }} 
+               <br><strong>Your Element (from Heavenly Stem):</strong> {{ user_element }}</p>
+        {% endif %}
+
+        {% if manual_result %}
+            <h2>Manual City Match</h2>
+            <table>
+                <tr>
+                    <th>City</th>
+                    <th>Incorporation Date</th>
+                    <th>Match Score</th>
+                    <th>Constellation</th>
+                    <th>Element</th>
+                </tr>
+                <tr>
+                    <td>{{ manual_result.city }}</td>
+                    <td>{{ manual_result.date }}</td>
+                    <td>{{ manual_result.score }}%</td>
+                    <td>{{ manual_result.constellation | translate_constellation }}</td>
+                    <td>{{ manual_result.element }}</td>
+                </tr>
+            </table>
+            <p class="ad"><a href="https://amazon.com/feng-shui-charms" target="_blank">Boost your luck with our Feng Shui Charms!</a></p>
+        {% endif %}
+
+        {% if cities %}
+            <h2>Database Matches (Page {{ page }})</h2>
+            <p>
+                Sort by Match Score:
+                <a href="{{ url_for('index', page=page, sort='desc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}">High to Low ↓</a>
+                |
+                <a href="{{ url_for('index', page=page, sort='asc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}">Low to High ↑</a>
+            </p>
+            <table>
+                <tr>
+                    <th>City</th>
+                    <th>State/Region</th>
+                    <th>Country</th>
+                    <th>Incorporation Date</th>
+                    <th>Match Score</th>
+                    <th>Constellation</th>
+                    <th>Element</th>
+                    <th>Description</th>
+                </tr>
+                {% for city in cities %}
+                    <tr>
+                        <td>{{ city.name }}</td>
+                        <td>{{ city.state_country }}</td>
+                        <td>{{ city.country }}</td>
+                        <td>{{ city.incorporation_date }}</td>
+                        <td>{{ city.match_score }}%</td>
+                        <td>{{ city.constellation | translate_constellation }}</td>
+                        <td>{{ city.element }}</td>
+                        <td>{{ city.description }}</td>
+                    </tr>
+                    {% if loop.index == 5 %}
+                        <tr>
+                            <td colspan="8" class="ad">
+                                <a href="https://amazon.com/feng-shui-charms" target="_blank">Boost your luck with our Feng Shui Charms!</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('index', page=page-1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}">Previous Page</a>
+                {% endif %}
+                {% if total_matches > page * 10 %}
+                    <a href="{{ url_for('index', page=page+1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}">Next Page</a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <p class="disclaimer">This tool is for entertainment purposes only and is not scientifically verified. Use it for fun and inspiration!</p>
+    </div>
+</body>
+</html>

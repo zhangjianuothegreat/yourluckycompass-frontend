@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover your destiny with personalized insights on Bazi readings, lucky cities, direction compass, and sound bath meditation.">
+    <title>Your Lucky Compass | Discover Your Destiny</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D3B45',
+                        secondary: '#8D99AE',
+                        accent1: '#EF476F',
+                        accent2: '#118AB2',
+                        accent3: '#06D6A0',
+                        accent4: '#FFD166',
+                        light: '#F7F9FC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        jp: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-sm {
+                text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light font-sans text-primary min-h-screen">
+    <!-- Header Section -->
+    <header class="relative py-16 px-4 md:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 -z-10"></div>
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-jp font-light mb-4 tracking-tight">
+                Your <span class="font-medium">Lucky Compass</span>
+            </h1>
+            <p class="text-secondary text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto">
+                Discover harmony with ancient wisdom. Explore your destiny, lucky directions, and ideal environments.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 pb-20">
+        <!-- Feature Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <!-- Bazi Reading Card -->
+            <a href="/bazi" class="group">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-accent1/90 to-accent1 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-xl font-medium mb-2">Bazi Reading & Fortune</h2>
+                        <p class="text-secondary">Discover your destiny through ancient Chinese astrology and get personalized运势 (Yùnshì) insights.</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Lucky City Card -->
+            <a href="/lucky_city" class="group">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-accent2/90 to-accent2 flex items-center justify-center">
+                        <i class="fas fa-city text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-xl font-medium mb-2">Lucky City Match</h2>
+                        <p class="text-secondary">Find cities that resonate with your energy and bring you good fortune.</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Lucky Direction Card -->
+            <a href="/lucky_compass" class="group">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-accent3/90 to-accent3 flex items-center justify-center">
+                        <i class="fas fa-compass text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-xl font-medium mb-2">Lucky Direction Compass</h2>
+                        <p class="text-secondary">Discover favorable directions to enhance your well-being and success.</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Sound Bath Card -->
+            <a href="/sound_bath" class="group">
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-accent4/90 to-accent4 flex items-center justify-center">
+                        <i class="fas fa-music text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6">
+                        <h2 class="text-xl font-medium mb-2">Sound Bath & Zen Guide</h2>
+                        <p class="text-secondary">Experience healing vibrations and mindfulness practices for inner peace.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- About Section -->
+        <div class="mt-16 md:mt-24 text-center max-w-3xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-jp font-light mb-6">Ancient Wisdom, Modern Tools</h2>
+            <p class="text-secondary mb-8">
+                Your Lucky Compass combines traditional Eastern philosophy with contemporary technology to help you 
+                find balance, purpose, and good fortune in your life's journey.
+            </p>
+            <div class="inline-flex items-center text-sm text-secondary">
+                <i class="fas fa-leaf mr-2"></i>
+                <p>For entertainment purposes. Find harmony in your own way.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary/5 py-10 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-primary/70 text-sm">© 2023 Your Lucky Compass</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-primary/70 hover:text-primary transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="text-primary/70 hover:text-primary transition-colors">
+                        <i class="fas fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-primary/70 hover:text-primary transition-colors">
+                        <i class="fas fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 pt-6 border-t border-primary/10 text-center">
+                <a href="#" class="text-primary/60 hover:text-primary text-sm mx-3 transition-colors">Privacy Policy</a>
+                <a href="#" class="text-primary/60 hover:text-primary text-sm mx-3 transition-colors">Terms of Service</a>
+                <a href="#" class="text-primary/60 hover:text-primary text-sm mx-3 transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple animation script -->
+    <script>
+        // Add subtle fade-in animation for cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-hover');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

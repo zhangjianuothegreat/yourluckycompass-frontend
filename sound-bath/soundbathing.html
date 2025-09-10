@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Bath & Meditation - Your Lucky Compass</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header with navigation -->
+        <header class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <a href="/" class="text-2xl font-bold text-blue-600">Your Lucky Compass</a>
+                <a href="/" class="text-gray-600 hover:text-blue-600 transition">
+                    <i class="fas fa-home mr-1"></i> Home
+                </a>
+            </div>
+            <h1 class="text-3xl font-bold mb-2">Sound Bath & Meditation Guide</h1>
+            <p class="text-gray-600">Find peace through mindful practices and immersive sound experiences</p>
+        </header>
+
+        <!-- Benefits of mindfulness section -->
+        <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-leaf text-green-500 mr-2"></i>
+                Benefits of Mindfulness Meditation
+            </h2>
+            <p class="mb-4">
+                Mindfulness meditation offers numerous benefits for mental, emotional, and physical well-being. It reduces stress by lowering cortisol levels and promotes emotional balance by helping you observe thoughts without judgment. Regular practice enhances focus, improves sleep quality, and fosters greater self-awareness.
+            </p>
+            <p>
+                A simple mindfulness technique: Sit comfortably, focus on your breath, and gently redirect attention whenever your mind wanders. Start with 5 minutes daily, gradually increasing duration. Notice sensations without labeling them as good or bad—this builds present-moment awareness that extends beyond your practice sessions.
+            </p>
+        </section>
+
+        <!-- Sound bath tracks grid -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center">
+                <i class="fas fa-music text-purple-500 mr-2"></i>
+                Sound Bath Collection
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dynamic sound items will be repeated for each track -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                    <div class="h-40 bg-gradient-to-r from-blue-400 to-purple-500 relative flex items-center justify-center">
+                        <i class="fas fa-volume-up text-white text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Bamboo Whisper</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm"><i class="far fa-clock mr-1"></i> 10 min</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition" onclick="playAudio('Bamboo Whisper')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <a href="/sound-bath/audio/Bamboo Whisper.MP3" download class="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                    <div class="h-40 bg-gradient-to-r from-green-400 to-teal-500 relative flex items-center justify-center">
+                        <i class="fas fa-volume-up text-white text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Ocean Pulse</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm"><i class="far fa-clock mr-1"></i> 15 min</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition" onclick="playAudio('Ocean Pulse')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <a href="/sound-bath/audio/Ocean Pulse.MP3" download class="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                    <div class="h-40 bg-gradient-to-r from-amber-400 to-orange-500 relative flex items-center justify-center">
+                        <i class="fas fa-volume-up text-white text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Starlit Night</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm"><i class="far fa-clock mr-1"></i> 20 min</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition" onclick="playAudio('Starlit Night')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <a href="/sound-bath/audio/Starlit Night.MP3" download class="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                    <div class="h-40 bg-gradient-to-r from-gray-400 to-gray-600 relative flex items-center justify-center">
+                        <i class="fas fa-volume-up text-white text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Temple Stillness</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm"><i class="far fa-clock mr-1"></i> 25 min</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition" onclick="playAudio('Temple Stillness')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <a href="/sound-bath/audio/Temple Stillness.MP3" download class="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- More tracks would follow the same pattern -->
+            </div>
+
+            <!-- Show more button for additional tracks -->
+            <div class="text-center mt-8">
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-md transition">
+                    <i class="fas fa-plus mr-2"></i> Show More Tracks
+                </button>
+            </div>
+        </section>
+
+        <!-- Sharing section -->
+        <section class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Get Download Access</h2>
+            <p class="mb-6">Share our website on social media to unlock free downloads. Each share lets you download one track.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.yourluckycompass.com&text=Check%20out%20these%20amazing%20sound%20baths%20for%20mindfulness%20and%20relaxation!" 
+                   class="bg-sky-500 text-white px-4 py-2 rounded-md hover:bg-sky-600 transition flex items-center">
+                    <i class="fab fa-twitter mr-2"></i> Share on Twitter
+                </a>
+                
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.yourluckycompass.com" 
+                   class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center">
+                    <i class="fab fa-facebook-f mr-2"></i> Share on Facebook
+                </a>
+                
+                <a href="https://www.tiktok.com/share/url?url=https%3A%2F%2Fwww.yourluckycompass.com" 
+                   class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition flex items-center">
+                    <i class="fab fa-tiktok mr-2"></i> Share on TikTok
+                </a>
+            </div>
+            
+            <p class="text-center text-gray-600 text-sm">
+                After sharing, you'll receive download access for one track. Repeat to download more.
+            </p>
+        </section>
+
+        <!-- Audio player (hidden by default) -->
+        <div id="audioPlayer" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-lg p-3 w-11/12 max-w-2xl hidden">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <button id="pauseBtn" class="bg-blue-600 text-white p-2 rounded-full mr-3 hover:bg-blue-700 transition">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <div>
+                        <h4 id="currentTrack" class="font-medium"></h4>
+                        <div class="w-64 bg-gray-200 rounded-full h-2 mt-1">
+                            <div id="progressBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="closePlayer" class="text-gray-500 hover:text-gray-700 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局音频元素 - 用于跨页面保持播放 -->
+    <audio id="globalAudio" loop></audio>
+
+    <script>
+        // 获取音频元素和DOM元素
+        const audioElement = document.getElementById('globalAudio');
+        const player = document.getElementById('audioPlayer');
+        const currentTrackEl = document.getElementById('currentTrack');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const closeBtn = document.getElementById('closePlayer');
+        const progressBar = document.getElementById('progressBar');
+        
+        // 音频文件路径映射
+        const audioFiles = {
+            'Bamboo Whisper': '/sound-bath/audio/Bamboo Whisper.MP3',
+            'Ocean Pulse': '/sound-bath/audio/Ocean Pulse.MP3',
+            'Starlit Night': '/sound-bath/audio/Starlit Night.MP3',
+            'Temple Stillness': '/sound-bath/audio/Temple Stillness.MP3'
+            // 添加更多音频文件映射
+        };
+
+        // 播放音频函数
+        function playAudio(trackName) {
+            // 设置并播放音频
+            const audioSrc = audioFiles[trackName];
+            if (audioSrc) {
+                audioElement.src = audioSrc;
+                audioElement.play();
+                
+                // 更新播放器UI
+                currentTrackEl.textContent = trackName;
+                player.classList.remove('hidden');
+                pauseBtn.querySelector('i').classList.replace('fa-play', 'fa-pause');
+            }
+        }
+        
+        // 暂停/播放切换
+        pauseBtn.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (audioElement.paused) {
+                audioElement.play();
+                icon.classList.replace('fa-play', 'fa-pause');
+            } else {
+                audioElement.pause();
+                icon.classList.replace('fa-pause', 'fa-play');
+            }
+        });
+        
+        // 关闭播放器
+        closeBtn.addEventListener('click', function() {
+            audioElement.pause();
+            player.classList.add('hidden');
+        });
+        
+        // 更新进度条
+        audioElement.addEventListener('timeupdate', function() {
+            const percent = (audioElement.currentTime / audioElement.duration) * 100;
+            progressBar.style.width = percent + '%';
+        });
+        
+        // 页面加载时恢复播放状态（如果之前在播放）
+        window.addEventListener('load', function() {
+            if (!audioElement.paused) {
+                player.classList.remove('hidden');
+                currentTrackEl.textContent = Object.keys(audioFiles).find(key => 
+                    audioFiles[key] === audioElement.src.split(window.location.origin)[1]
+                ) || '';
+            }
+        });
+    </script>
+</body>
+</html>

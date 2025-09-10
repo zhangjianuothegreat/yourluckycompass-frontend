@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Elements Destiny Calculator - Your Lucky Compass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+    <div class="container mx-auto p-4 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold">Five Elements Destiny Calculator</h1>
+            <p class="mt-2 text-lg">Discover Your Elemental Balance</p>
+        </header>
+
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <p class="mb-4">Feeling stuck or out of sync? Ancient Chinese wisdom sees your essence aligned with nature's rhythms. Your birth ties to one of 24 solar terms and the Five Elements (Wood, Fire, Earth, Metal, Water), shaping your personality, relationships, and path.</p>
+            <p class="mb-4 font-semibold">Take our free 1-minute quiz to uncover your elemental balance. It's FREE.</p>
+
+            <form action="/calculate" method="POST" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label for="year" class="block text-sm font-medium">Birth Year</label>
+                        <input type="number" id="year" name="year" required class="w-full p-2 border rounded-md" placeholder="e.g., 2001">
+                    </div>
+                    <div>
+                        <label for="month" class="block text-sm font-medium">Birth Month</label>
+                        <input type="number" id="month" name="month" required min="1" max="12" class="w-full p-2 border rounded-md" placeholder="e.g., 3">
+                    </div>
+                    <div>
+                        <label for="day" class="block text-sm font-medium">Birth Day</label>
+                        <input type="number" id="day" name="day" required min="1" max="31" class="w-full p-2 border rounded-md" placeholder="e.g., 31">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="hour" class="block text-sm font-medium">Birth Hour (Optional)</label>
+                    <input type="number" id="hour" name="hour" min="0" max="23" class="w-full p-2 border rounded-md" placeholder="e.g., 5">
+                    <p class="text-sm text-gray-500 mt-1">No birth hour? No problem! Results are still accurate, but adding it boosts insights by ~25%.</p>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Calculate Your Destiny</button>
+            </form>
+        </section>
+
+        <footer class="text-center mt-8 text-sm text-gray-500">
+            <p>Based on ancient Chinese metaphysics | For entertainment purposes only</p>
+            <p>© 2025 Your Lucky Compass</p>
+        </footer>
+    </div>
+</body>
+</html>
