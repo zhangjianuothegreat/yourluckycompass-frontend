@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Destiny Chart - Your Lucky Compass</title>
+    <meta name="description" content="Your personalized Bazi destiny chart results, including five elements balance, personality insights, and 2026 forecast.">
+    <meta name="keywords" content="Bazi results, Chinese zodiac forecast, five elements analysis, destiny insights">
+    <title>Your Destiny Chart Results - Your Lucky Compass</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/bazi">Bazi Reading</a>
+        <a href="/lucky_city">Lucky City Match</a>
+        <a href="/lucky_compass">Lucky Compass</a>
+        <a href="/sound_bath">Sound Bath</a>
+    </nav>
+
     <div class="container mx-auto p-4 max-w-4xl">
         <header class="text-center mb-8">
-            <a href="/" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 mb-4">Calculate Another Destiny</a>
+            <a href="/bazi" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 mb-4">Calculate Another One</a>
             <h1 class="text-3xl font-bold">Your Destiny Chart Results</h1>
         </header>
 
@@ -21,9 +33,7 @@
 
         <section class="bg-white p-6 rounded-lg shadow-md mb-6">
             <h2 class="text-xl font-semibold mb-4">Four Pillars of Destiny</h2>
-            <!-- 带五行属性的天干显示 -->
             <p><strong>Heavenly Stems:</strong> {{ report.heavenly_stems_with_elements }}</p>
-            <!-- 修改为带五行属性的地支显示 -->
             <p><strong>Earthly Branches:</strong> {{ report.earthly_branches_with_elements }}</p>
         </section>
 
@@ -42,13 +52,36 @@
 
         <section class="bg-white p-6 rounded-lg shadow-md mb-6">
             <h2 class="text-xl font-semibold mb-4">Zodiac Insights</h2>
-            <p class="text-sm italic mb-2">Note: Zodiac signs are calculated based on the Chinese Lunar Calendar, which may differ from the Gregorian Calendar. Your zodiac sign is determined by your lunar birth year.</p>
-            <h3 class="text-lg font-medium mb-2">Yearly Characteristics</h3>
+            <p class="text-sm italic mb-2">Note: Your zodiac is based on the Chinese lunar calendar, which might differ from the standard calendar. It's tied to your lunar birth year.</p>
+            <h3 class="text-lg font-medium mb-2">Yearly Traits</h3>
             <p>{{ report.zodiac_yearly|safe }}</p>
             <p><strong>Care Tips:</strong> {{ report.zodiac_care_tips|safe }}</p>
-            <h3 class="text-lg font-medium mt-4 mb-2">2026 Horse Year Forecast</h3>
+            <h3 class="text-lg font-medium mt-4 mb-2">2026 Horse Year Outlook</h3>
             <p>{{ report.forecast|safe }}</p>
             <p><strong>Care Tips:</strong> {{ report.forecast_care_tips|safe }}</p>
+        </section>
+
+        <!-- New Section: Next Steps to Boost Your Luck -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">Next Steps to Boost Your Luck</h2>
+            <p class="mb-4">Loved your Bazi results? Explore more tools to align your life with good fortune!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gray-50 p-4 rounded-md">
+                    <h3 class="text-lg font-medium mb-2">Find Your Lucky City</h3>
+                    <p class="text-sm text-gray-600 mb-2">Match your Five Elements to cities that boost your luck and energy.</p>
+                    <a href="/lucky_city" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Try Lucky City Match</a>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-md">
+                    <h3 class="text-lg font-medium mb-2">Discover Your Lucky Direction</h3>
+                    <p class="text-sm text-gray-600 mb-2">Find directions that enhance your success and well-being.</p>
+                    <a href="/lucky_compass" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Use Lucky Compass</a>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-md">
+                    <h3 class="text-lg font-medium mb-2">Relax with Sound Bath</h3>
+                    <p class="text-sm text-gray-600 mb-2">Balance your energy with soothing sound meditations.</p>
+                    <a href="/sound_bath" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Start Sound Bath</a>
+                </div>
+            </div>
         </section>
 
         <section class="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -56,11 +89,47 @@
             <p>{{ report.zen_wisdom|safe }}</p>
         </section>
 
+        <!-- Ad Placeholder -->
+        <div id="ad-placeholder" class="ad">
+            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
+            Ad Space - Coming Soon!
+        </div>
+
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <a href="/" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 mb-4">Calculate Another Destiny</a>
-            <p>Based on ancient Chinese metaphysics | For entertainment purposes only</p>
+            <a href="/bazi" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 mb-4">Calculate Another One</a>
+            <p>Based on ancient Chinese wisdom | For entertainment only</p>
             <p>© 2025 Your Lucky Compass</p>
         </footer>
     </div>
+
+    <!-- Share and Add to Home Screen JS -->
+    <script>
+        // For adding to home screen (PWA prompt)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+        });
+        function promptInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+            } else {
+                alert('Add our site to your home screen from your browser menu!');
+            }
+        }
+
+        // For sharing (Web Share API)
+        async function shareSite() {
+            try {
+                await navigator.share({
+                    title: 'My Bazi Results - Your Lucky Compass',
+                    text: 'Check out my destiny chart!',
+                    url: window.location.href
+                });
+                // 可以调用 /record_share 如果需要记录
+            } catch (err) {
+                alert('Share failed: ' + err);
+            }
+        }
+    </script>
 </body>
 </html>

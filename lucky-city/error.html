@@ -1,9 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head><title>Error</title></head>
-<body>
-    <h1>Error</h1>
-    <p style="color:red">{{ error }}</p>
-    <a href="/zen/luckytown">Back to Lucky Town</a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Error page for Lucky City Match. Try again to find your lucky city!">
+    <meta name="keywords" content="lucky city, error, Chinese astrology, Your Lucky Compass">
+    <title>Error - Your Lucky Compass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="https://www.yourluckycompass.com/" class="text-blue-600 hover:text-blue-700">Home</a>
+            <a href="https://www.yourluckycompass.com/bazi" class="text-blue-600 hover:text-blue-700">Bazi Reading</a>
+            <a href="https://www.yourluckycompass.com/lucky_city" class="text-blue-600 hover:text-blue-700 font-bold">Lucky City Match</a>
+            <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:text-blue-700">Lucky Compass</a>
+            <a href="https://www.yourluckycompass.com/sound_bath" class="text-blue-600 hover:text-blue-700">Sound Bath</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-800">Something Went Wrong</h1>
+        </header>
+
+        <section class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <p class="text-red-600 font-bold mb-4">{{ error }}</p>
+            <a href="/lucky_city" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Back to Lucky City Match</a>
+        </section>
+
+        <!-- Ad Placeholder -->
+        <div id="ad-placeholder" class="ad text-center text-gray-500 my-4">
+            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
+            Ad Space - Coming Soon!
+        </div>
+
+        <footer class="text-center mt-8 text-sm text-gray-500">
+            <p>Based on ancient Chinese wisdom | For entertainment only</p>
+            <p>© 2025 Your Lucky Compass</p>
+        </footer>
+    </div>
+
+    <script>
+        // Web Share API for sharing
+        async function shareSite() {
+            try {
+                await navigator.share({
+                    title: 'Lucky City Match - Your Lucky Compass',
+                    text: 'Find your lucky city with ancient Chinese astrology!',
+                    url: window.location.href
+                });
+            } catch (err) {
+                alert('Share failed: ' + err);
+            }
+        }
+    </script>
 </body>
 </html>

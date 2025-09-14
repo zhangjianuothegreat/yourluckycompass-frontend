@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience sound baths and mindfulness meditation to relax, reduce stress, and find your cosmic harmony. Combine with your lucky direction for ultimate peace!">
+    <meta name="keywords" content="sound bath, mindfulness meditation, lucky direction, Chinese astrology, relaxation, Your Lucky Compass">
+    <title>Your Lucky Sound Bath - Find Peace and Harmony</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="https://www.yourluckycompass.com/" class="text-blue-600 hover:text-blue-700">Home</a>
+            <a href="https://www.yourluckycompass.com/bazi" class="text-blue-600 hover:text-blue-700">Bazi Reading</a>
+            <a href="https://www.yourluckycompass.com/lucky_city" class="text-blue-600 hover:text-blue-700">Lucky City Match</a>
+            <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:text-blue-700">Lucky Compass</a>
+            <a href="https://www.yourluckycompass.com/sound_bath" class="text-blue-600 hover:text-blue-700 font-bold">Sound Bath</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-800">Your Lucky Sound Bath</h1>
+            <p class="mt-2 text-lg">Chill out, find your zen, and vibe with the universe through immersive sound and mindfulness!</p>
+        </header>
+
+        <!-- Benefits of Sound Bath and Mindfulness -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 flex items-center text-blue-800">
+                <i class="fas fa-leaf text-green-500 mr-2"></i>
+                Why Sound Baths and Mindfulness Rock
+            </h2>
+            <p class="mb-4 text-gray-600">
+                Sound baths are like a spa day for your soul. The soothing tones of gongs, singing bowls, and nature sounds—like wind, waves, or flowing water—melt away stress, calm your mind, and recharge your spirit. Studies show sound therapy can lower anxiety, improve sleep, and boost your mood. It’s like hitting the reset button on your busy life, leaving you refreshed and ready to shine.
+            </p>
+            <p class="mb-4 text-gray-600">
+                Mindfulness meditation takes it up a notch. By focusing on your breath and staying in the moment, you sharpen your focus, balance your emotions, and discover your true self. It’s like a mental gym session that builds resilience and clarity. Regular practice can reduce stress hormones, enhance creativity, and help you roll with life’s punches. Start small: 5 minutes of deep breathing daily can work wonders!
+            </p>
+            <p class="text-sm text-gray-500">
+                <strong>Disclaimer</strong>: Sound baths and mindfulness are for relaxation and personal growth, not medical treatment. Always consult a healthcare professional for medical concerns.
+            </p>
+        </section>
+
+        <!-- Maximize Your Sound Bath with Lucky Direction -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 flex items-center text-blue-800">
+                <i class="fas fa-compass text-orange-500 mr-2"></i>
+                Maximize Your Sound Bath with Your Lucky Direction
+            </h2>
+            <p class="mb-4 text-gray-600">
+                Want to supercharge your sound bath? First, use our <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:underline">Lucky Compass</a> (premium feature) to find your lucky direction based on ancient Chinese astrology. Then, check out <a href="https://www.yourluckycompass.com/lucky_city" class="text-blue-600 hover:underline">Lucky City Match</a> to discover a city that vibes with your destiny. Picture this: you’re in your lucky city, facing your lucky direction, listening to a sound bath of wind, waves, or gentle streams. Close your eyes, breathe deeply, and let everything else fade away. Imagine you’re part of nature, syncing with the universe’s rhythm. In that moment, it’s just you and the cosmos—finding your true self, feeling totally alive. That’s the magic of combining mindfulness with your cosmic path!
+            </p>
+            <p class="text-sm text-gray-500">
+                <strong>Pro Tip</strong>: Sit comfortably, face your lucky direction, and let the sounds wash over you. Visualize yourself as one with nature, hearing the universe’s whispers, and watch your spirit soar!
+            </p>
+        </section>
+
+        <!-- Sound Bath Tracks Grid -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center text-blue-800">
+                <i class="fas fa-music text-purple-500 mr-2"></i>
+                Sound Bath Collection
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for track in sound_tracks %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02]">
+                    <div class="h-40 bg-gradient-to-r from-blue-400 to-purple-500 relative flex items-center justify-center">
+                        <i class="fas fa-volume-up text-white text-4xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">{{ track.name }}</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-500 text-sm"><i class="far fa-clock mr-1"></i> {{ track.duration }}</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition" onclick="playAudio('{{ track.name }}')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                {% if download_available %}
+                                <a href="{{ track.url }}" download class="bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Show More Button -->
+            <div class="text-center mt-8">
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-md transition">
+                    <i class="fas fa-plus mr-2"></i> Show More Tracks
+                </button>
+            </div>
+        </section>
+
+        <!-- Sharing Section -->
+        {% if not download_available %}
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-blue-800">Unlock Downloads with a Share</h2>
+            <p class="mb-6 text-gray-600">Spread the zen! Share our site on social media to unlock free downloads. Each share gets you one track.</p>
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.yourluckycompass.com/sound_bath&text=Relax%20with%20these%20amazing%20sound%20baths%20from%20Your%20Lucky%20Compass!%20Find%20your%20zen%20today!" 
+                   class="bg-sky-500 text-white px-4 py-2 rounded-md hover:bg-sky-600 transition flex items-center">
+                    <i class="fab fa-twitter mr-2"></i> Share on X
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.yourluckycompass.com/sound_bath" 
+                   class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition flex items-center">
+                    <i class="fab fa-facebook-f mr-2"></i> Share on Facebook
+                </a>
+                <a href="https://www.tiktok.com/share?url=https%3A%2F%2Fwww.yourluckycompass.com/sound_bath" 
+                   class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition flex items-center">
+                    <i class="fab fa-tiktok mr-2"></i> Share on TikTok
+                </a>
+                <button onclick="shareSite()" class="bg-pink-500 text-white px-4 py-2 rounded-md hover:bg-pink-600 transition flex items-center">
+                    <i class="fab fa-instagram mr-2"></i> Share on Instagram
+                </button>
+            </div>
+            <p class="text-center text-gray-600 text-sm">
+                After sharing, you’ll unlock one track download. Share again for more!
+            </p>
+        </section>
+        {% else %}
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded">
+            <p><i class="fas fa-check-circle mr-2"></i> Awesome, you shared! Download one track now. Share again to grab more.</p>
+        </div>
+        {% endif %}
+
+        <!-- Explore More Section -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-blue-800">Explore More Luck</h2>
+            <p class="mb-4 text-gray-600">Loved your sound bath? Boost your cosmic journey with these tools!</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-gray-50 p-4 rounded-md">
+                    <h3 class="text-lg font-medium mb-2 text-blue-800">Get Your Bazi Reading</h3>
+                    <p class="text-sm text-gray-600 mb-2">Uncover your Five Elements balance and personality insights.</p>
+                    <a href="https://www.yourluckycompass.com/bazi" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Try Bazi Reading</a>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-md">
+                    <h3 class="text-lg font-medium mb-2 text-blue-800">Find Your Lucky City</h3>
+                    <p class="text-sm text-gray-600 mb-2">Discover cities that vibe with your destiny.</p>
+                    <a href="https://www.yourluckycompass.com/lucky_city" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Find Lucky City</a>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-md">
+                    <h3 class="text-lg font-medium mb-2 text-blue-800">Get Your Lucky Direction</h3>
+                    <p class="text-sm text-gray-600 mb-2">Unlock your lucky direction with our premium Lucky Compass.</p>
+                    <a href="https://www.yourluckycompass.com/lucky_compass" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Use Lucky Compass</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Placeholder -->
+        <div id="ad-placeholder" class="ad text-center text-gray-500 my-4">
+            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
+            Ad Space - Coming Soon!
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-8 text-sm text-gray-500">
+            <p>Based on ancient Chinese wisdom | For entertainment only</p>
+            <p>© 2025 Your Lucky Compass</p>
+        </footer>
+    </div>
+
+    <!-- Audio Player (Fixed at Bottom) -->
+    <div id="audioPlayer" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-full shadow-lg p-3 w-11/12 max-w-2xl hidden z-50">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <button id="pauseBtn" class="bg-blue-600 text-white p-2 rounded-full mr-3 hover:bg-blue-700 transition">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <div>
+                    <h4 id="currentTrack" class="font-medium"></h4>
+                    <div class="w-64 bg-gray-200 rounded-full h-2 mt-1">
+                        <div id="progressBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <button id="closePlayer" class="text-gray-500 hover:text-gray-700 transition">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audioElement" loop>
+        <source id="audioSource" src="" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // 存储音频状态在localStorage，实现跨页面持久化
+        let audioState = JSON.parse(localStorage.getItem('audioState')) || {
+            playing: false,
+            track: null,
+            currentTime: 0
+        };
+
+        const audioElement = document.getElementById('audioElement');
+        const audioSource = document.getElementById('audioSource');
+        const player = document.getElementById('audioPlayer');
+        const currentTrack = document.getElementById('currentTrack');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const closePlayer = document.getElementById('closePlayer');
+        const progressBar = document.getElementById('progressBar');
+
+        // 初始化音频状态
+        if (audioState.track) {
+            loadAudio(audioState.track);
+            if (audioState.playing) {
+                audioElement.currentTime = audioState.currentTime;
+                audioElement.play();
+                updatePlayerUI(audioState.track);
+            }
+        }
+
+        // 播放音频
+        function playAudio(trackName) {
+            loadAudio(trackName);
+            audioElement.play();
+            audioState.playing = true;
+            audioState.track = trackName;
+            updatePlayerUI(trackName);
+            saveAudioState();
+        }
+
+        // 加载音频文件
+        function loadAudio(trackName) {
+            // 使用GitHub仓库中的音频文件路径
+            const audioUrl = `https://raw.githubusercontent.com/zhangjianuothegreat/yourluckycompass-frontend/main/sound-bath/audio/${encodeURIComponent(trackName)}.MP3`;
+            audioSource.src = audioUrl;
+            audioElement.load();
+        }
+
+        // 更新播放器UI
+        function updatePlayerUI(trackName) {
+            currentTrack.textContent = trackName;
+            player.classList.remove('hidden');
+            pauseBtn.querySelector('i').classList.replace('fa-play', 'fa-pause');
+        }
+
+        // 保存音频状态到localStorage
+        function saveAudioState() {
+            audioState.currentTime = audioElement.currentTime;
+            localStorage.setItem('audioState', JSON.stringify(audioState));
+        }
+
+        // 暂停/播放切换
+        pauseBtn.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-pause')) {
+                audioElement.pause();
+                icon.classList.replace('fa-pause', 'fa-play');
+                audioState.playing = false;
+            } else {
+                audioElement.play();
+                icon.classList.replace('fa-play', 'fa-pause');
+                audioState.playing = true;
+            }
+            saveAudioState();
+        });
+
+        // 关闭播放器
+        closePlayer.addEventListener('click', function() {
+            audioElement.pause();
+            player.classList.add('hidden');
+            audioState = { playing: false, track: null, currentTime: 0 };
+            saveAudioState();
+        });
+
+        // 更新进度条
+        audioElement.addEventListener('timeupdate', function() {
+            const percent = (audioElement.currentTime / audioElement.duration) * 100;
+            progressBar.style.width = `${percent}%`;
+            saveAudioState();
+        });
+
+        // 页面关闭时保存状态
+        window.addEventListener('beforeunload', saveAudioState);
+
+        // Web Share API for Instagram and other platforms
+        async function shareSite() {
+            try {
+                await navigator.share({
+                    title: 'Your Lucky Sound Bath',
+                    text: 'Relax and find your zen with these amazing sound baths from Your Lucky Compass!',
+                    url: 'https://www.yourluckycompass.com/sound_bath'
+                });
+            } catch (err) {
+                alert('Share failed: ' + err);
+            }
+        }
+    </script>
+</body>
+</html>

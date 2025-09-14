@@ -3,22 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Error page for Five Elements Destiny Calculator on Your Lucky Compass.">
+    <meta name="keywords" content="Chinese astrology error, Bazi reading issue">
     <title>Error - Your Lucky Compass</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/bazi">Bazi Reading</a>
+        <a href="/lucky_city">Lucky City Match</a>
+        <a href="/lucky_compass">Lucky Compass</a>
+        <a href="/sound_bath">Sound Bath</a>
+    </nav>
+
     <div class="container mx-auto p-4 max-w-4xl">
         <header class="text-center mb-8">
-            <h1 class="text-3xl font-bold">Error</h1>
+            <h1 class="text-3xl font-bold">Oops, Something Went Wrong</h1>
         </header>
         <section class="bg-white p-6 rounded-lg shadow-md">
             <p class="text-red-600">{{ error }}</p>
-            <a href="/" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 mt-4">Try Again</a>
+            <a href="/bazi" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 mt-4">Try Again</a>
         </section>
+
+        <!-- Ad Placeholder -->
+        <div id="ad-placeholder" class="ad">
+            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
+            Ad Space - Coming Soon!
+        </div>
+
         <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>Based on ancient Chinese metaphysics | For entertainment purposes only</p>
+            <p>Based on ancient Chinese wisdom | For entertainment only</p>
             <p>© 2025 Your Lucky Compass</p>
         </footer>
     </div>
+
+    <!-- Share and Add to Home Screen JS -->
+    <script>
+        // For adding to home screen (PWA prompt)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+        });
+        function promptInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+            } else {
+                alert('Add our site to your home screen from your browser menu!');
+            }
+        }
+
+        // For sharing (Web Share API)
+        async function shareSite() {
+            try {
+                await navigator.share({
+                    title: 'Your Lucky Compass - Error Page',
+                    text: 'Check out this cool astrology tool!',
+                    url: window.location.href
+                });
+                // 可以调用 /record_share 如果需要记录
+            } catch (err) {
+                alert('Share failed: ' + err);
+            }
+        }
+    </script>
 </body>
 </html>
