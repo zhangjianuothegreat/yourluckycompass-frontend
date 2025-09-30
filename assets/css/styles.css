@@ -39,7 +39,7 @@ h1, h2, h3 {
     margin: 0 auto;
 }
 
-/* 3. 按钮样式：参考 Shein 简洁渐变，减少变体 */
+/* 3. 按钮样式：参考 Shein 简洁渐变，增强醒目度 */
 .btn {
     display: inline-block;
     padding: 0.8rem 1.8rem;
@@ -47,6 +47,7 @@ h1, h2, h3 {
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2); /* 新增：默认轻微阴影，更醒目 */
 }
 
 .btn-primary {
@@ -56,7 +57,7 @@ h1, h2, h3 {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4); /* 增强：hover 阴影更深，突出交互 */
 }
 
 .btn-outline {
@@ -150,54 +151,69 @@ h1, h2, h3 {
     border-bottom: none;
 }
 
-/* 5. Hero 区域：参考 Zara 局部视觉，控制图片比例 */
+/* 5. Hero 区域：核心修改！图片淡色背景+内容悬浮 */
 .hero {
     margin-top: 60px; /* 避开固定导航 */
+    min-height: calc(100vh - 60px); /* 占满屏幕剩余高度，手机端也全屏 */
     display: flex;
-    flex-direction: column;
-    /* 控制 Hero 高度：桌面端占满屏幕剩余空间，移动端固定高度 */
-    min-height: calc(100vh - 60px);
+    justify-content: center;
+    align-items: center;
+    position: relative; /* 作为子元素定位的容器 */
+    padding: var(--spacing);
+    text-align: center;
 }
 
+/* 图片容器：叠加半透明遮罩，实现淡色效果 */
 .hero-visual {
+    position: absolute; /* 绝对定位，作为背景 */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 60vh; /* 固定图片容器高度，避免拉伸 */
-    overflow: hidden; /* 裁剪超出部分，保持比例 */
-    position: relative;
+    height: 100%;
+    z-index: -1; /* 放在最底层，不遮挡内容 */
+    overflow: hidden;
+}
+
+/* 关键：添加半透明遮罩，压暗图片，颜色呼应品牌深紫 */
+.hero-visual::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 26, 71, 0.4); /* 深紫半透明，数值越小越淡 */
+    z-index: 1;
 }
 
 .hero-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* 保持图片比例，铺满容器 */
-    object-position: center; /* 重点内容居中 */
+    object-fit: cover; /* 保持图片比例，铺满屏幕，手机端也适配 */
+    object-position: center; /* 图片核心内容居中，避免裁剪关键部分 */
 }
 
-/* Hero 文字内容：居中+留白，突出层级 */
+/* Hero 内容：悬浮在背景上，文字改为白色更醒目 */
 .hero-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: var(--spacing);
-    gap: 1rem;
+    max-width: 700px; /* 限制宽度，避免文字过宽 */
+    z-index: 2; /* 确保在遮罩上方 */
 }
 
 .hero h1 {
-    font-size: 2.5rem; /* 比原设计小，更显极简 */
-    color: var(--color-purple);
+    font-size: 2.8rem; /* 适当放大标题，增强视觉焦点 */
+    color: var(--color-white); /* 文字改为白色，与淡色背景对比强烈 */
+    margin-bottom: 1rem;
 }
 
 .hero h1 span {
-    color: var(--color-gold);
+    color: var(--color-gold); /* 金色强调，保留品牌识别 */
 }
 
 .hero p {
     max-width: 500px;
-    font-size: 1rem;
-    color: var(--color-text);
+    font-size: 1.1rem;
+    color: var(--color-white); /* 描述文字也改白色，提升可读性 */
+    margin: 0 auto 2rem; /* 居中+增加按钮间距 */
 }
 
 /* 6. 功能区：参考 ASOS 卡片，但简化样式 */
@@ -364,7 +380,7 @@ h1, h2, h3 {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* 10. 移动端适配：重点优化导航和 Hero 区域 */
+/* 10. 移动端适配：重点优化 Hero 区域 */
 @media (max-width: 768px) {
     /* 隐藏桌面导航，显示汉堡菜单 */
     .desktop-nav {
@@ -374,15 +390,12 @@ h1, h2, h3 {
         display: block;
     }
 
-    /* Hero 区域：调整高度，避免文字溢出 */
-    .hero-visual {
-        height: 40vh;
-    }
+    /* Hero 区域：调整标题大小，保持手机端美观 */
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     .hero p {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     /* 功能区和博客区：移动端单列布局，减少拥挤 */
