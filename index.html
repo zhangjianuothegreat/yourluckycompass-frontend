@@ -8,12 +8,12 @@
     <!-- Open Graph for Social Sharing -->
     <meta property="og:title" content="Your Lucky Compass: Unlock Your Luck Today">
     <meta property="og:description" content="Blend ancient wisdom with modern tools for better luck and inner peace.">
-    <meta property="og:image" content="https://www.yourluckycompass.com/static/images/hero.jpg">
+    <meta property="og:image" content="https://www.yourluckycompass.com/assets/images/hero.webp">
     <meta property="og:url" content="https://www.yourluckycompass.com">
     <meta property="og:type" content="website">
     <title>Your Lucky Compass: Unlock Your Luck Today</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- Link to your new CSS -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
     <!-- Header with Navigation -->
@@ -32,6 +32,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <picture class="hero-bg">
+            <source src="/assets/images/hero.webp" type="image/webp">
+            <img src="/assets/images/hero.jpg" alt="Hero Image">
+        </picture>
         <h1>Your <span>Lucky Compass</span></h1>
         <p>Unlock your lucky path: Blend ancient wisdom with modern tools for better luck and inner peace.</p>
         <button onclick="window.location.href='/bazi'">Discover Your Luck</button>
@@ -157,14 +161,21 @@
 
     <!-- Scripts -->
     <script>
-        // Hamburger Menu Toggle
         document.addEventListener('DOMContentLoaded', () => {
+            // Hamburger Menu Toggle
             const toggle = document.querySelector('.nav-toggle');
             const navLinks = document.querySelector('.nav-links');
-
             toggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
             });
+
+            // Hero Fade-In Animation
+            const hero = document.querySelector('.hero');
+            hero.style.opacity = '0';
+            hero.style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                hero.style.opacity = '1';
+            }, 100);
 
             // Card Animation
             const cards = document.querySelectorAll('.card');
