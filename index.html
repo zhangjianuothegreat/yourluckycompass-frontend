@@ -3,225 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Unlock your luck with Chinese astrology, lucky cities, direction compass, and sound baths for inner peace. Free tools for better life harmony.">
-    <meta name="keywords" content="Chinese astrology, Feng Shui tips, daily horoscope, lucky cities finder, direction compass app, mindfulness meditation, sound bath therapy, zen practices, depression relief, inner peace techniques">
-    <!-- Open Graph for Social Sharing -->
-    <meta property="og:title" content="Your Lucky Compass: Unlock Your Luck Today">
-    <meta property="og:description" content="Blend ancient wisdom with modern tools for better luck and inner peace.">
-    <meta property="og:image" content="https://www.yourluckycompass.com/assets/images/hero.webp">
+    <meta name="description" content="Unlock luck with Chinese astrology, lucky cities, compass, and sound baths.">
+    <meta name="keywords" content="Chinese astrology, Feng Shui, lucky compass, sound bath">
+    <!-- 仅保留关键社交标签，避免冗余 -->
+    <meta property="og:title" content="Your Lucky Compass">
+    <meta property="og:image" content="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.webp">
     <meta property="og:url" content="https://www.yourluckycompass.com">
-    <meta property="og:type" content="website">
-    <title>Your Lucky Compass: Unlock Your Luck Today</title>
+    <title>Your Lucky Compass</title>
+    
+    <!-- 1. 优先加载关键 CSS（Google 字体+核心样式） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    
+    <!-- 2. 预加载 Hero 图（提升首屏加载速度） -->
+    <link rel="preload" as="image" href="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.webp" type="image/webp">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav>
-            <button class="nav-toggle">☰</button>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/bazi">Lucky Cosmic Blueprint</a>
-                <a href="/lucky_city">Lucky City Match</a>
-                <a href="/lucky_compass">Lucky Compass</a>
-                <a href="/sound_bath">Sound Bath & Mindfulness</a>
-            </div>
+    <!-- 极简导航：参考 SSENSE，仅保留核心功能 -->
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">Your Lucky Compass</a>
+            <!-- 桌面端导航：仅 4 个核心功能，避免繁杂 -->
+            <nav class="desktop-nav">
+                <a href="/bazi">Cosmic Blueprint</a>
+                <a href="/lucky_city">Lucky City</a>
+                <a href="/lucky_compass">Compass</a>
+                <a href="/sound_bath">Sound Bath</a>
+            </nav>
+            <!-- 移动端汉堡菜单：参考 Zara 简洁样式 -->
+            <button class="hamburger" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- 移动端折叠菜单（默认隐藏） -->
+        <nav class="mobile-nav">
+            <a href="/bazi">Cosmic Blueprint</a>
+            <a href="/lucky_city">Lucky City</a>
+            <a href="/lucky_compass">Compass</a>
+            <a href="/sound_bath">Sound Bath</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero 区域：参考 Zara 局部视觉+留白，避免全图拉伸 -->
     <section class="hero">
-        <picture class="hero-bg">
-            <source src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.webp" type="image/webp">
-            <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.jpg" alt="Hero Image" class="hero-img">
-        </picture>
-        <h1>Your <span>Lucky Compass</span></h1>
-        <p>Unlock your lucky path: Blend ancient wisdom with modern tools for better luck and inner peace.</p>
-        <button onclick="window.location.href='/bazi'">Discover Your Luck</button>
+        <div class="hero-visual">
+            <!-- 用 div 包裹图片，控制显示范围，避免拉伸 -->
+            <picture>
+                <source src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.webp" type="image/webp">
+                <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.jpg" alt="Lucky path" class="hero-img" loading="eager">
+            </picture>
+        </div>
+        <div class="hero-content">
+            <h1>Your <span>Lucky Compass</span></h1>
+            <p>Blend ancient wisdom with modern tools for luck & inner peace.</p>
+            <a href="/bazi" class="btn btn-primary">Discover Your Luck</a>
+        </div>
     </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Feature Cards -->
-        <section class="card-grid">
-            <!-- Lucky Cosmic Blueprint -->
-            <a href="/bazi" class="card">
-                <img src="https://via.placeholder.com/400x200?text=Cosmic+Blueprint" alt="Lucky Cosmic Blueprint">
-                <div class="card-content">
-                    <h3>Lucky Cosmic Blueprint & Fortune</h3>
-                    <p>Unlock your destiny with ancient Chinese astrology and get easy-to-understand luck insights.</p>
-                </div>
-            </a>
-            <!-- Lucky City -->
-            <a href="/lucky_city" class="card">
-                <img src="https://via.placeholder.com/400x200?text=Lucky+City" alt="Lucky City Match">
-                <div class="card-content">
+    <!-- 核心功能区：参考 ASOS 卡片式，但简化布局，减少加载压力 -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <!-- 每个卡片仅保留「图+标题+短描述」，避免冗余 -->
+                <a href="/bazi" class="feature-card" loading="lazy">
+                    <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/blueprint.webp" alt="Cosmic Blueprint" class="card-img">
+                    <h3>Cosmic Blueprint</h3>
+                    <p>Ancient Chinese astrology for luck insights.</p>
+                </a>
+                <a href="/lucky_city" class="feature-card" loading="lazy">
+                    <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/city.webp" alt="Lucky City" class="card-img">
                     <h3>Lucky City Match</h3>
-                    <p>Find cities that match your energy and boost your good fortune.</p>
-                </div>
-            </a>
-            <!-- Lucky Direction -->
-            <a href="/lucky_compass" class="card">
-                <img src="https://via.placeholder.com/400x200?text=Lucky+Compass" alt="Lucky Direction Compass">
-                <div class="card-content">
-                    <h3>Lucky Direction Compass</h3>
-                    <p>Discover directions that improve your well-being and success.</p>
-                </div>
-            </a>
-            <!-- Sound Bath -->
-            <a href="/sound_bath" class="card">
-                <img src="https://via.placeholder.com/400x200?text=Sound+Bath" alt="Sound Bath & Zen Guide">
-                <div class="card-content">
-                    <h3>Sound Bath & Zen Guide</h3>
-                    <p>Relax with healing sounds and mindfulness tips for inner peace.</p>
-                </div>
-            </a>
-        </section>
-
-        <!-- About Us Section -->
-        <section class="about-us">
-            <h2>Your Lucky Compass Story</h2>
-            <p class="max-w-3xl mx-auto text-center">
-                At Your Lucky Compass, we believe in harmonizing ancient Eastern wisdom with modern technology to guide you toward a life of balance and fortune. Inspired by Chinese astrology, Feng Shui, and mindfulness, our tools empower you to uncover your unique path to luck and inner peace. Founded by a team passionate about bridging tradition and innovation, we’re here to make the mystical accessible and fun. Join our community, share your journey, and let’s navigate the stars together!
-            </p>
-            <button onclick="window.location.href='/bazi'" class="mt-6">Start Your Journey</button>
-        </section>
-
-        <!-- Blog Section -->
-        <section id="blog" class="blog-article">
-            <h2>Weekly Horoscope Tips</h2>
-            <p class="text-center max-w-2xl mx-auto">
-                Get fresh insights every week on how to use ancient wisdom for modern life. Share on Reddit (r/astrology or r/mindfulness) or TikTok for more tips!
-            </p>
-            <div class="card">
-                <h3>How to Use Chinese Astrology for Career Success</h3>
-                <p>Based on your Chinese zodiac sign, certain careers can boost your natural strengths. For example, Rats thrive in finance or tech due to their cleverness, while Dragons excel in leadership roles like CEO or entrepreneur. Don’t just rely on zodiac—combine it with research for best results.</p>
-                <a href="/bazi">Try our Lucky Cosmic Blueprint tool for personalized career insights</a>
-            </div>
-            <div class="card">
-                <h3>Weekly Horoscope Tips for the Horse Year (2026)</h3>
-                <p>This week (September 8-14, 2025), Roosters: Embrace positivity to overcome doubts. Challenges come, but your mindset wins. For all signs, check daily Chinese horoscopes for love, career, and health.</p>
-                <a href="/bazi">Get your weekly forecast</a>
-            </div>
-        </section>
-
-        <!-- Social Sharing Section -->
-        <section>
-            <h2>Share Your Journey</h2>
-            <p class="text-center max-w-2xl mx-auto">
-                Join our community and share your luck stories on your favorite apps.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fwww.yourluckycompass.com&text=Unlocking%20my%20luck%20with%20Your%20Lucky%20Compass!%20Try%20it%20for%20free%20insights."
-                   class="bg-[#1A1A1A] text-white px-5 py-3 rounded-lg hover:bg-[#2E1A47] transition flex items-center">
-                    <i class="fab fa-x-twitter mr-2"></i> Share on X
+                    <p>Cities that boost your energy & fortune.</p>
                 </a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.yourluckycompass.com"
-                   class="bg-[#2E1A47] text-white px-5 py-3 rounded-lg hover:bg-[#4A2A6A] transition flex items-center">
-                    <i class="fab fa-facebook-f mr-2"></i> Share on Facebook
+                <a href="/lucky_compass" class="feature-card" loading="lazy">
+                    <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/compass.webp" alt="Lucky Compass" class="card-img">
+                    <h3>Lucky Direction</h3>
+                    <p>Directions for well-being & success.</p>
                 </a>
-                <a href="https://www.tiktok.com/share?url=https%3A%2F%2Fwww.yourluckycompass.com"
-                   class="bg-[#1A1A1A] text-white px-5 py-3 rounded-lg hover:bg-[#2E1A47] transition flex items-center">
-                    <i class="fab fa-tiktok mr-2"></i> Share on TikTok
-                </a>
-                <a href="https://www.instagram.com/share?url=https%3A%2F%2Fwww.yourluckycompass.com"
-                   class="bg-gradient-to-r from-[#FFD700] to-[#FFC107] text-[#1A1A1A] px-5 py-3 rounded-lg hover:opacity-90 transition flex items-center">
-                    <i class="fab fa-instagram mr-2"></i> Share on Instagram
+                <a href="/sound_bath" class="feature-card" loading="lazy">
+                    <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/sound.webp" alt="Sound Bath" class="card-img">
+                    <h3>Sound Bath</h3>
+                    <p>Healing sounds for inner peace.</p>
                 </a>
             </div>
-        </section>
-
-        <!-- Ad Placeholder -->
-        <div class="ad">
-            Ad Space - Coming Soon!
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p>© 2025 Your Lucky Compass</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-[#FFD700]"><i class="fas fa-envelope"></i></a>
-                    <a href="https://x.com/yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://www.instagram.com/yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-tiktok"></i></a>
+    <!-- 关于我们：参考 Nordstrom 简洁文本，减少段落长度 -->
+    <section class="about">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>We harmonize ancient Eastern wisdom with modern tech to guide you toward balance & fortune. Make the mystical accessible, every day.</p>
+            <a href="/about" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+
+    <!-- 博客区：仅保留 2 篇核心文章，避免加载过多内容 -->
+    <section class="blog">
+        <div class="container">
+            <h2>Latest Insights</h2>
+            <div class="blog-grid">
+                <article class="blog-card" loading="lazy">
+                    <h3>Chinese Astrology for Career Success</h3>
+                    <p>Match your zodiac sign to careers that boost your strengths. Rats thrive in finance, Dragons in leadership.</p>
+                    <a href="/blog/career-astrology" class="read-more">Read More</a>
+                </article>
+                <article class="blog-card" loading="lazy">
+                    <h3>Weekly Luck Tips (2026 Horse Year)</h3>
+                    <p>Roosters: Embrace positivity to overcome doubts. Check daily horoscopes for love & career.</p>
+                    <a href="/blog/weekly-tips" class="read-more">Read More</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚：参考 Gap 简洁布局，仅保留必要链接 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="/" class="logo">Your Lucky Compass</a>
+                <div class="social-links">
+                    <a href="https://x.com/yourluckycompass" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://instagram.com/yourluckycompass" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/yourluckycompass" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-            <div class="mt-6 pt-6 border-t border-[#2E1A47] text-center">
-                <a href="#" class="hover:text-[#FFD700] mx-3">Privacy Policy</a>
-                <a href="#" class="hover:text-[#FFD700] mx-3">Terms of Service</a>
-                <a href="#" class="hover:text-[#FFD700] mx-3">Contact</a>
+            <div class="footer-bottom">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/contact">Contact</a>
+                <p>© 2025 Your Lucky Compass. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Hamburger Menu Toggle
-            const toggle = document.querySelector('.nav-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            toggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
+    <!-- 脚本：延迟加载，且仅保留核心功能（导航+动画） -->
+    <script defer>
+        // 1. 移动端汉堡菜单切换
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
 
-            // Hero Fade-In Animation
+        // 2. 首屏 Hero 淡入动画（轻量化，不影响加载）
+        document.addEventListener('DOMContentLoaded', () => {
             const hero = document.querySelector('.hero');
             hero.style.opacity = '0';
-            hero.style.transition = 'opacity 1s ease';
+            hero.style.transition = 'opacity 0.8s ease';
             setTimeout(() => {
                 hero.style.opacity = '1';
             }, 100);
+        });
 
-            // Card Animation
-            const cards = document.querySelectorAll('.card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(card);
+        // 3. 非首屏元素滚动动画（延迟触发，减少首屏加载压力）
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .blog-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
         });
-
-        // Web Share API
-        async function shareSite() {
-            try {
-                await navigator.share({
-                    title: 'Your Lucky Compass',
-                    text: 'Unlock your luck with free tools!',
-                    url: window.location.href
-                });
-            } catch (err) {
-                alert('Share failed: ' + err);
-            }
-        }
-
-        // PWA Prompt
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            deferredPrompt = e;
-        });
-
-        function promptInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-            } else {
-                alert('Add our site to your home screen from your browser menu!');
-            }
-        }
     </script>
 </body>
 </html>
