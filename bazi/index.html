@@ -1,98 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover your five elements balance with our free Chinese astrology quiz.">
-    <meta name="keywords" content="Chinese astrology, five elements calculator, Bazi reading">
+    <meta name="description" content="Discover your five elements balance with our free Chinese astrology quiz. Get insights on personality, health, and luck.">
+    <meta name="keywords" content="Chinese astrology, five elements calculator, Bazi reading, destiny insights, zodiac forecast">
     <title>Five Elements Destiny Calculator - Your Lucky Compass</title>
-    <!-- 保留原 Tailwind（确保输入框大小和布局不变），仅新增主站字体（统一字体风格） -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* 仅添加字体统一和浅淡紫变量（不改变原布局） */
-        body { font-family: 'Poppins', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        :root { --light-purple: #E9E2F3; /* 主页风格的浅淡紫（不刺眼） */ --deep-purple: #2E1A47; /* 主页标题金色对应的深紫（文字用） */ --gold: #FFD700; /* 主页金色（按钮用） */ }
-    </style>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
-    <!-- 导航栏：保留原布局，仅将蓝色改为浅淡紫 -->
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-center space-x-4">
-            <a href="/" class="text-deep-purple hover:text-gold transition-colors">Home</a>
-            <a href="/bazi" class="text-deep-purple hover:text-gold font-bold transition-colors">Bazi Reading</a>
-            <a href="/lucky_city" class="text-deep-purple hover:text-gold transition-colors">Lucky City Match</a>
-            <a href="/lucky_compass" class="text-deep-purple hover:text-gold transition-colors">Lucky Compass</a>
-            <a href="/sound_bath" class="text-deep-purple hover:text-gold transition-colors">Sound Bath</a>
-        </div>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/bazi">Bazi Reading</a>
+        <a href="/lucky_city">Lucky City Match</a>
+        <a href="/lucky_compass">Lucky Compass</a>
+        <a href="/sound_bath">Sound Bath</a>
     </nav>
 
-    <!-- 主内容区：完全保留原布局，仅改颜色 -->
-    <div class="container mx-auto p-4 max-w-4xl" style="margin-top: 2rem;">
-        <!-- 标题区：浅淡紫背景+深紫文字（文字清晰可见，不刺眼） -->
-        <header class="text-center mb-8 p-6 bg-light-purple rounded-lg">
-            <h1 class="text-3xl font-bold text-deep-purple">Discover Your Five Elements Balance</h1>
-            <p class="mt-2 text-lg text-deep-purple">Free Quiz to Reveal Your Personality and Luck</p>
+    <div class="container mx-auto p-4 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold">Discover Your Five Elements Balance</h1>
+            <p class="mt-2 text-lg">Free Quiz to Reveal Your Personality and Luck</p>
         </header>
 
-        <!-- 表单卡片：保留原输入框大小，仅改文字颜色 -->
         <section class="bg-white p-6 rounded-lg shadow-md">
-            <p class="mb-4 text-gray-600">Feeling off-balance? Ancient Chinese wisdom links your birth to nature's cycles and the Five Elements (Wood, Fire, Earth, Metal, Water). These shape your traits, relationships, and life path.</p>
-            <p class="mb-4 font-semibold text-deep-purple">Take this quick free quiz to find your elemental profile. No strings attached!</p>
+            <p class="mb-4">Feeling off-balance? Ancient Chinese wisdom links your birth to nature's cycles and the Five Elements (Wood, Fire, Earth, Metal, Water). These shape your traits, relationships, and life path.</p>
+            <p class="mb-4 font-semibold">Take this quick free quiz to find your elemental profile. No strings attached!</p>
 
-            <!-- 表单：完全保留原输入框大小，仅改标签颜色 -->
             <form action="/bazi/calculate" method="POST" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label for="year" class="block text-sm font-medium text-deep-purple">Birth Year</label>
-                        <!-- 保留原输入框样式（大小不变） -->
-                        <input type="number" id="year" name="year" required class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="e.g., 2001">
+                        <label for="year" class="block text-sm font-medium">Birth Year</label>
+                        <input type="number" id="year" name="year" required class="w-full p-2 border rounded-md" placeholder="e.g., 2001">
                     </div>
                     <div>
-                        <label for="month" class="block text-sm font-medium text-deep-purple">Birth Month</label>
-                        <input type="number" id="month" name="month" required min="1" max="12" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="e.g., 3">
+                        <label for="month" class="block text-sm font-medium">Birth Month</label>
+                        <input type="number" id="month" name="month" required min="1" max="12" class="w-full p-2 border rounded-md" placeholder="e.g., 3">
                     </div>
                     <div>
-                        <label for="day" class="block text-sm font-medium text-deep-purple">Birth Day</label>
-                        <input type="number" id="day" name="day" required min="1" max="31" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="e.g., 31">
+                        <label for="day" class="block text-sm font-medium">Birth Day</label>
+                        <input type="number" id="day" name="day" required min="1" max="31" class="w-full p-2 border rounded-md" placeholder="e.g., 31">
                     </div>
                 </div>
 
                 <div>
-                    <label for="hour" class="block text-sm font-medium text-deep-purple">Birth Hour (Optional)</label>
-                    <input type="number" id="hour" name="hour" min="0" max="23" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="e.g., 5">
+                    <label for="hour" class="block text-sm font-medium">Birth Hour (Optional)</label>
+                    <input type="number" id="hour" name="hour" min="0" max="23" class="w-full p-2 border rounded-md" placeholder="e.g., 5">
                     <p class="text-sm text-gray-500 mt-1">No hour? That's fine! Results are still spot-on, but adding it gives 25% more detail.</p>
                 </div>
 
-                <!-- 按钮：金色渐变（与主页一致），保留原大小 -->
-                <button type="submit" class="w-full bg-gradient-to-r from-gold to-#FFC107 text-deep-purple font-bold py-2 px-4 rounded-md hover:shadow-lg transition-shadow">Get My Results Now</button>
+                <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Get My Results Now</button>
             </form>
         </section>
 
-        <!-- 广告占位：保留原样 -->
-        <div id="ad-placeholder" class="ad mt-6 text-center text-gray-500">Ad Space - Coming Soon!</div>
-        
-        <!-- 页脚：保留原布局，改深紫背景+白色文字（与主页一致） -->
-        <footer class="mt-8 p-6 bg-deep-purple text-white text-center">
-            <div class="container">
-                <p>Based on ancient Chinese wisdom | For entertainment only</p>
-                <p>© 2025 Your Lucky Compass</p>
-            </div>
+        <!-- Ad Placeholder -->
+        <div id="ad-placeholder" class="ad">
+            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
+            Ad Space - Coming Soon!
+        </div>
+
+        <footer class="text-center mt-8 text-sm text-gray-500">
+            <p>Based on ancient Chinese wisdom | For entertainment only</p>
+            <p>© 2025 Your Lucky Compass</p>
         </footer>
     </div>
 
-    <!-- 脚本：完全保留原功能 -->
+    <!-- Share and Add to Home Screen JS -->
     <script>
+        // For adding to home screen (PWA prompt)
         let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => { deferredPrompt = e; });
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+        });
         function promptInstall() {
-            if (deferredPrompt) { deferredPrompt.prompt(); } 
-            else { alert('Add our site to your home screen from your browser menu!'); }
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+            } else {
+                alert('Add our site to your home screen from your browser menu!');
+            }
         }
+
+        // For sharing (Web Share API)
         async function shareSite() {
             try {
                 await navigator.share({
@@ -100,7 +89,10 @@
                     text: 'Discover your five elements balance!',
                     url: window.location.href
                 });
-            } catch (err) { alert('Share failed: ' + err); }
+                // 可以调用 /record_share 如果需要记录
+            } catch (err) {
+                alert('Share failed: ' + err);
+            }
         }
     </script>
 </body>
