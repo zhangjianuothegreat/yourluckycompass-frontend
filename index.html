@@ -47,21 +47,24 @@
         </nav>
     </header>
 
-    <!-- Hero 区域：参考 Zara 局部视觉+留白，避免全图拉伸 -->
+    <!-- Hero 区域：修改后 -->
     <section class="hero">
-        <div class="hero-visual">
-            <!-- 用 div 包裹图片，控制显示范围，避免拉伸 -->
-            <picture>
-                <source src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.webp" type="image/webp">
-                <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.jpg" alt="Lucky path" class="hero-img" loading="eager">
-            </picture>
-        </div>
-        <div class="hero-content">
-            <h1>Your <span>Lucky Compass</span></h1>
-            <p>Blend ancient wisdom with modern tools for luck & inner peace.</p>
-            <a href="/bazi" class="btn btn-primary">Discover Your Luck</a>
-        </div>
+    <div class="hero-visual">
+        <!-- 保留原图片标签，无需修改 -->
+        <picture>
+            <source src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.webp" type="image/webp">
+            <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/hero.jpg" alt="Lucky path" class="hero-img" loading="eager">
+        </picture>
+        <!-- 新增：手动添加半透明遮罩层（确保与 CSS 配合生效） -->
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+        <h1>Your <span>Lucky Compass</span></h1>
+        <p>Blend ancient wisdom with modern tools for luck & inner peace.</p>
+        <a href="/bazi" class="btn btn-primary">Discover Your Luck</a>
+    </div>
     </section>
+
 
     <!-- 核心功能区：参考 ASOS 卡片式，但简化布局，减少加载压力 -->
     <section class="features">
