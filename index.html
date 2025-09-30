@@ -28,10 +28,14 @@
             <a href="/" class="logo">Your Lucky Compass</a>
             <!-- 桌面端导航：仅 4 个核心功能，避免繁杂 -->
             <nav class="desktop-nav">
-                <a href="/bazi">Cosmic Blueprint</a>
-                <a href="/lucky_city">Lucky City</a>
-                <a href="/lucky_compass">Compass</a>
-                <a href="/sound_bath">Sound Bath</a>
+                <!-- 改：链接指向后端的 /bazi（原 /bazi 改为后端地址） -->
+                <a href="https://yourluckycompass-backend.vercel.app/bazi">Cosmic Blueprint</a>
+                <!-- 改：链接指向后端的 /lucky_city -->
+                <a href="https://yourluckycompass-backend.vercel.app/lucky_city">Lucky City</a>
+                <!-- 改：链接指向后端的 /lucky_compass（如果后端有这个路由） -->
+                <a href="https://yourluckycompass-backend.vercel.app/lucky_compass">Compass</a>
+                <!-- 改：链接指向后端的 /sound_bath -->
+                <a href="https://yourluckycompass-backend.vercel.app/sound_bath">Sound Bath</a>
             </nav>
             <!-- 移动端汉堡菜单：参考 Zara 简洁样式 -->
             <button class="hamburger" aria-label="Menu">
@@ -40,10 +44,11 @@
         </div>
         <!-- 移动端折叠菜单（默认隐藏） -->
         <nav class="mobile-nav">
-            <a href="/bazi">Cosmic Blueprint</a>
-            <a href="/lucky_city">Lucky City</a>
-            <a href="/lucky_compass">Compass</a>
-            <a href="/sound_bath">Sound Bath</a>
+            <!-- 改：移动端链接同样指向后端 -->
+            <a href="https://yourluckycompass-backend.vercel.app/bazi">Cosmic Blueprint</a>
+            <a href="https://yourluckycompass-backend.vercel.app/lucky_city">Lucky City</a>
+            <a href="https://yourluckycompass-backend.vercel.app/lucky_compass">Compass</a>
+            <a href="https://yourluckycompass-backend.vercel.app/sound_bath">Sound Bath</a>
         </nav>
     </header>
 
@@ -61,7 +66,8 @@
     <div class="hero-content">
         <h1>Your <span>Lucky Compass</span></h1>
         <p>Blend ancient wisdom with modern tools for luck & inner peace.</p>
-        <a href="/bazi" class="btn btn-primary">Discover Your Luck</a>
+        <!-- 改：按钮指向后端的 /bazi（原 /bazi 改为后端地址） -->
+        <a href="https://yourluckycompass-backend.vercel.app/bazi" class="btn btn-primary">Discover Your Luck</a>
     </div>
     </section>
 
@@ -71,22 +77,26 @@
         <div class="container">
             <div class="feature-grid">
                 <!-- 每个卡片仅保留「图+标题+短描述」，避免冗余 -->
-                <a href="/bazi" class="feature-card" loading="lazy">
+                <!-- 改：卡片链接指向后端的 /bazi -->
+                <a href="https://yourluckycompass-backend.vercel.app/bazi" class="feature-card" loading="lazy">
                     <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/blueprint.webp" alt="Cosmic Blueprint" class="card-img">
                     <h3>Cosmic Blueprint</h3>
                     <p>Ancient Chinese astrology for luck insights.</p>
                 </a>
-                <a href="/lucky_city" class="feature-card" loading="lazy">
+                <!-- 改：卡片链接指向后端的 /lucky_city -->
+                <a href="https://yourluckycompass-backend.vercel.app/lucky_city" class="feature-card" loading="lazy">
                     <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/city.webp" alt="Lucky City" class="card-img">
                     <h3>Lucky City Match</h3>
                     <p>Cities that boost your energy & fortune.</p>
                 </a>
-                <a href="/lucky_compass" class="feature-card" loading="lazy">
+                <!-- 改：卡片链接指向后端的 /lucky_compass -->
+                <a href="https://yourluckycompass-backend.vercel.app/lucky_compass" class="feature-card" loading="lazy">
                     <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/compass.webp" alt="Lucky Compass" class="card-img">
                     <h3>Lucky Direction</h3>
                     <p>Directions for well-being & success.</p>
                 </a>
-                <a href="/sound_bath" class="feature-card" loading="lazy">
+                <!-- 改：卡片链接指向后端的 /sound_bath -->
+                <a href="https://yourluckycompass-backend.vercel.app/sound_bath" class="feature-card" loading="lazy">
                     <img src="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/images/sound.webp" alt="Sound Bath" class="card-img">
                     <h3>Sound Bath</h3>
                     <p>Healing sounds for inner peace.</p>
