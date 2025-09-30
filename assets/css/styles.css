@@ -107,14 +107,22 @@ nav a:hover {
     position: relative;
 }
 
+/* 修改：移除 .hero-bg 的 object-fit（仅保留定位，作为图片容器） */
 .hero-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     z-index: 0;
+}
+
+/* 新增：.hero-img 类，控制图片尺寸和比例（关键修复） */
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持图片比例，铺满容器（避免拉伸） */
+    object-position: center; /* 图片居中，防止关键内容被裁剪 */
 }
 
 .hero::after {
