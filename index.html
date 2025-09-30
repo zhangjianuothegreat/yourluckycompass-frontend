@@ -5,237 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Unlock your luck with Chinese astrology, lucky cities, direction compass, and sound baths for inner peace. Free tools for better life harmony.">
     <meta name="keywords" content="Chinese astrology, Feng Shui tips, daily horoscope, lucky cities finder, direction compass app, mindfulness meditation, sound bath therapy, zen practices, depression relief, inner peace techniques">
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Your Lucky Compass: Unlock Your Luck Today">
+    <meta property="og:description" content="Blend ancient wisdom with modern tools for better luck and inner peace.">
+    <meta property="og:image" content="https://www.yourluckycompass.com/static/images/hero.jpg">
+    <meta property="og:url" content="https://www.yourluckycompass.com">
+    <meta property="og:type" content="website">
     <title>Your Lucky Compass: Unlock Your Luck Today</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css"> <!-- 添加这个链接你的新CSS -->
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2D3B45',
-                        secondary: '#8D99AE',
-                        accent1: '#EF476F',
-                        accent2: '#118AB2',
-                        accent3: '#06D6A0',
-                        accent4: '#FFD166',
-                        light: '#F7F9FC',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        jp: ['"Noto Sans JP"', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow-sm {
-                text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/css/styles.css"> <!-- Link to your new CSS -->
 </head>
-<body class="bg-light font-sans text-primary min-h-screen">
-    <!-- Header Section -->
-    <header class="relative py-16 px-4 md:py-24 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 -z-10"></div>
-        <div class="max-w-5xl mx-auto text-center">
-            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-jp font-light mb-4 tracking-tight">
-                Your <span class="font-medium">Lucky Compass</span>
-            </h1>
-            <p class="text-secondary text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto">
-                Unlock your lucky path: Blend ancient wisdom with modern tools for better luck and inner peace.
-            </p>
-        </div>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav>
+            <button class="nav-toggle">☰</button>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/bazi">Lucky Cosmic Blueprint</a>
+                <a href="/lucky_city">Lucky City Match</a>
+                <a href="/lucky_compass">Lucky Compass</a>
+                <a href="/sound_bath">Sound Bath & Mindfulness</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- Navigation Bar (新增) -->
-    <nav>
-        <a href="/">Home</a>
-        <a href="/bazi">Lucky Cosmic Blueprint</a>
-        <a href="/lucky_city">Lucky City Match</a>
-        <a href="/lucky_compass">Lucky Compass</a>
-        <a href="/sound_bath">Sound Bath & Mindfulness</a>
-    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Your <span>Lucky Compass</span></h1>
+        <p>Unlock your lucky path: Blend ancient wisdom with modern tools for better luck and inner peace.</p>
+        <button onclick="window.location.href='/bazi'">Discover Your Luck</button>
+    </section>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 pb-20">
-        <!-- Feature Cards (修改文字) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <!-- Lucky Cosmic Blueprint Card -->
-            <a href="/bazi" class="group">
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-accent1/90 to-accent1 flex items-center justify-center">
-                        <i class="fas fa-chart-line text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="text-xl font-medium mb-2">Lucky Cosmic Blueprint & Fortune</h2>
-                        <p class="text-secondary">Unlock your destiny with ancient Chinese astrology and get easy-to-understand luck insights.</p>
-                    </div>
+    <main>
+        <!-- Feature Cards -->
+        <section class="card-grid">
+            <!-- Lucky Cosmic Blueprint -->
+            <a href="/bazi" class="card">
+                <img src="https://via.placeholder.com/400x200?text=Cosmic+Blueprint" alt="Lucky Cosmic Blueprint">
+                <div class="card-content">
+                    <h3>Lucky Cosmic Blueprint & Fortune</h3>
+                    <p>Unlock your destiny with ancient Chinese astrology and get easy-to-understand luck insights.</p>
                 </div>
             </a>
-
-            <!-- Lucky City Card -->
-            <a href="/lucky_city" class="group">
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-accent2/90 to-accent2 flex items-center justify-center">
-                        <i class="fas fa-city text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="text-xl font-medium mb-2">Lucky City Match</h2>
-                        <p class="text-secondary">Find cities that match your energy and boost your good fortune.</p>
-                    </div>
+            <!-- Lucky City -->
+            <a href="/lucky_city" class="card">
+                <img src="https://via.placeholder.com/400x200?text=Lucky+City" alt="Lucky City Match">
+                <div class="card-content">
+                    <h3>Lucky City Match</h3>
+                    <p>Find cities that match your energy and boost your good fortune.</p>
                 </div>
             </a>
-
-            <!-- Lucky Direction Card -->
-            <a href="/lucky_compass" class="group">
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-accent3/90 to-accent3 flex items-center justify-center">
-                        <i class="fas fa-compass text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="text-xl font-medium mb-2">Lucky Direction Compass</h2>
-                        <p class="text-secondary">Discover directions that improve your well-being and success.</p>
-                    </div>
+            <!-- Lucky Direction -->
+            <a href="/lucky_compass" class="card">
+                <img src="https://via.placeholder.com/400x200?text=Lucky+Compass" alt="Lucky Direction Compass">
+                <div class="card-content">
+                    <h3>Lucky Direction Compass</h3>
+                    <p>Discover directions that improve your well-being and success.</p>
                 </div>
             </a>
-
-            <!-- >Sound Bath & Mindfulness Card -->
-            <a href="/sound_bath" class="group">
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md card-hover overflow-hidden">
-                    <div class="h-48 bg-gradient-to-br from-accent4/90 to-accent4 flex items-center justify-center">
-                        <i class="fas fa-music text-white text-6xl transform group-hover:scale-110 transition-transform duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h2 class="text-xl font-medium mb-2">Sound Bath & Zen Guide</h2>
-                        <p class="text-secondary">Relax with healing sounds and mindfulness tips for inner peace.</p>
-                    </div>
+            <!-- Sound Bath -->
+            <a href="/sound_bath" class="card">
+                <img src="https://via.placeholder.com/400x200?text=Sound+Bath" alt="Sound Bath & Zen Guide">
+                <div class="card-content">
+                    <h3>Sound Bath & Zen Guide</h3>
+                    <p>Relax with healing sounds and mindfulness tips for inner peace.</p>
                 </div>
             </a>
-        </div>
-
-        <!-- About Section (修改文字) -->
-        <div class="mt-16 md:mt-24 text-center max-w-3xl mx-auto">
-            <h2 class="text-2xl md:text-3xl font-jp font-light mb-6">Ancient Wisdom Meets Modern Tools</h2>
-            <p class="text-secondary mb-8">
-                Your Lucky Compass mixes traditional Eastern ideas with today's tech to help you find balance, purpose, and good luck in life.
-            </p>
-            <div class="inline-flex items-center text-sm text-secondary">
-                <i class="fas fa-leaf mr-2"></i>
-                <p>For entertainment only. Find your own harmony.</p>
-            </div>
-        </div>
-
-        <!-- Blog Section (新增) -->
-        <section id="blog" class="mt-16 md:mt-20 bg-white rounded-2xl shadow-sm p-6 md:p-8">
-            <h2 class="text-xl md:text-2xl font-medium mb-6 text-center">Weekly Horoscope Tips</h2>
-            <p class="text-secondary text-center mb-8 max-w-2xl mx-auto">
-                Get fresh insights every week on how to use ancient wisdom for modern life. Share on Reddit (r/astrology or r/mindfulness) or TikTok for more tips!
-            </p>
-            <div class="blog-article">
-                <h3>How to Use Chinese Astrology for Career Success</h3>
-                <p>Based on your Chinese zodiac sign, certain careers can boost your natural strengths. For example, Rats thrive in finance or tech due to their cleverness, while Dragons excel in leadership roles like CEO or entrepreneur. Don't just rely on zodiac—combine it with research for best results. (Inspired by sources like Planderful and BGC Group)</p>
-                <a href="/bazi">Try our Lucky Cosmic Blueprint tool for personalized career insights</a>
-            </div>
-            <div class="blog-article">
-                <h3>Weekly Horoscope Tips for the Horse Year (2026)</h3>
-                <p>This week (September 8-14, 2025), Roosters: Embrace positivity to overcome doubts. Challenges come, but your mindset wins. For all signs, check daily Chinese horoscopes for love, career, and health. (From Horoscope.com and Times of India)</p>
-                <a href="/bazi">Get your weekly forecast</a>
-            </div>
-            <!-- 你可以在这里添加更多文章 -->
         </section>
 
-        <!-- Social Sharing Section (修改文字) -->
-        <section class="mt-16 md:mt-20 bg-white rounded-2xl shadow-sm p-6 md:p-8">
-            <h2 class="text-xl md:text-2xl font-medium mb-6 text-center">Share Your Journey</h2>
-            <p class="text-secondary text-center mb-8 max-w-2xl mx-auto">
+        <!-- About Us Section -->
+        <section class="about-us">
+            <h2>Your Lucky Compass Story</h2>
+            <p class="max-w-3xl mx-auto text-center">
+                At Your Lucky Compass, we believe in harmonizing ancient Eastern wisdom with modern technology to guide you toward a life of balance and fortune. Inspired by Chinese astrology, Feng Shui, and mindfulness, our tools empower you to uncover your unique path to luck and inner peace. Founded by a team passionate about bridging tradition and innovation, we’re here to make the mystical accessible and fun. Join our community, share your journey, and let’s navigate the stars together!
+            </p>
+            <button onclick="window.location.href='/bazi'" class="mt-6">Start Your Journey</button>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="blog-article">
+            <h2>Weekly Horoscope Tips</h2>
+            <p class="text-center max-w-2xl mx-auto">
+                Get fresh insights every week on how to use ancient wisdom for modern life. Share on Reddit (r/astrology or r/mindfulness) or TikTok for more tips!
+            </p>
+            <div class="card">
+                <h3>How to Use Chinese Astrology for Career Success</h3>
+                <p>Based on your Chinese zodiac sign, certain careers can boost your natural strengths. For example, Rats thrive in finance or tech due to their cleverness, while Dragons excel in leadership roles like CEO or entrepreneur. Don’t just rely on zodiac—combine it with research for best results.</p>
+                <a href="/bazi">Try our Lucky Cosmic Blueprint tool for personalized career insights</a>
+            </div>
+            <div class="card">
+                <h3>Weekly Horoscope Tips for the Horse Year (2026)</h3>
+                <p>This week (September 8-14, 2025), Roosters: Embrace positivity to overcome doubts. Challenges come, but your mindset wins. For all signs, check daily Chinese horoscopes for love, career, and health.</p>
+                <a href="/bazi">Get your weekly forecast</a>
+            </div>
+        </section>
+
+        <!-- Social Sharing Section -->
+        <section>
+            <h2>Share Your Journey</h2>
+            <p class="text-center max-w-2xl mx-auto">
                 Join our community and share your luck stories on your favorite apps.
             </p>
-            
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fwww.yourluckycompass.com&text=Unlocking%20my%20luck%20with%20Your%20Lucky%20Compass!%20Try%20it%20for%20free%20insights." 
-                   class="bg-slate-900 text-white px-5 py-3 rounded-lg hover:bg-slate-800 transition flex items-center">
+                <a href="https://x.com/intent/tweet?url=https%3A%2F%2Fwww.yourluckycompass.com&text=Unlocking%20my%20luck%20with%20Your%20Lucky%20Compass!%20Try%20it%20for%20free%20insights."
+                   class="bg-[#1A1A1A] text-white px-5 py-3 rounded-lg hover:bg-[#2E1A47] transition flex items-center">
                     <i class="fab fa-x-twitter mr-2"></i> Share on X
                 </a>
-                
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.yourluckycompass.com" 
-                   class="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700 transition flex items-center">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.yourluckycompass.com"
+                   class="bg-[#2E1A47] text-white px-5 py-3 rounded-lg hover:bg-[#4A2A6A] transition flex items-center">
                     <i class="fab fa-facebook-f mr-2"></i> Share on Facebook
                 </a>
-                
-                <a href="https://www.tiktok.com/share/url?url=https%3A%2F%2Fwww.yourluckycompass.com" 
-                   class="bg-black text-white px-5 py-3 rounded-lg hover:bg-gray-800 transition flex items-center">
+                <a href="https://www.tiktok.com/share?url=https%3A%2F%2Fwww.yourluckycompass.com"
+                   class="bg-[#1A1A1A] text-white px-5 py-3 rounded-lg hover:bg-[#2E1A47] transition flex items-center">
                     <i class="fab fa-tiktok mr-2"></i> Share on TikTok
                 </a>
-                
-                <a href="https://www.instagram.com/share?url=https%3A%2F%2Fwww.yourluckycompass.com" 
-                   class="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-5 py-3 rounded-lg hover:opacity-90 transition flex items-center">
+                <a href="https://www.instagram.com/share?url=https%3A%2F%2Fwww.yourluckycompass.com"
+                   class="bg-gradient-to-r from-[#FFD700] to-[#FFC107] text-[#1A1A1A] px-5 py-3 rounded-lg hover:opacity-90 transition flex items-center">
                     <i class="fab fa-instagram mr-2"></i> Share on Instagram
                 </a>
             </div>
         </section>
 
-        <!-- Ad Placeholder (新增) -->
-        <div id="ad-placeholder" class="ad">
-            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
+        <!-- Ad Placeholder -->
+        <div class="ad">
             Ad Space - Coming Soon!
         </div>
     </main>
 
-    <!-- Footer (修改文字) -->
-    <footer class="bg-primary/5 py-10 px-4">
+    <!-- Footer -->
+    <footer>
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <p class="text-primary/70 text-sm">© 2025 Your Lucky Compass</p>
-                </div>
+                <p>© 2025 Your Lucky Compass</p>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-primary/70 hover:text-primary transition-colors">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://x.com/yourluckycompass" class="text-primary/70 hover:text-primary transition-colors">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com/yourluckycompass" class="text-primary/70 hover:text-primary transition-colors">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.facebook.com/yourluckycompass" class="text-primary/70 hover:text-primary transition-colors">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@yourluckycompass" class="text-primary/70 hover:text-primary transition-colors">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
+                    <a href="#" class="hover:text-[#FFD700]"><i class="fas fa-envelope"></i></a>
+                    <a href="https://x.com/yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@yourluckycompass" class="hover:text-[#FFD700]"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
-            <div class="mt-6 pt-6 border-t border-primary/10 text-center">
-                <a href="#" class="text-primary/60 hover:text-primary text-sm mx-3 transition-colors">Privacy Policy</a>
-                <a href="#" class="text-primary/60 hover:text-primary text-sm mx-3 transition-colors">Terms of Service</a>
-                <a href="#" class="text-primary/60 hover:text-primary text-sm mx-3 transition-colors">Contact</a>
+            <div class="mt-6 pt-6 border-t border-[#2E1A47] text-center">
+                <a href="#" class="hover:text-[#FFD700] mx-3">Privacy Policy</a>
+                <a href="#" class="hover:text-[#FFD700] mx-3">Terms of Service</a>
+                <a href="#" class="hover:text-[#FFD700] mx-3">Contact</a>
             </div>
         </div>
     </footer>
 
-    <!-- Animation Script (原有的，保持) -->
+    <!-- Scripts -->
     <script>
-        // Add subtle fade-in animation for cards
+        // Hamburger Menu Toggle
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.card-hover');
-            
+            const toggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            toggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Card Animation
+            const cards = document.querySelectorAll('.card');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -244,7 +176,7 @@
                     }
                 });
             }, { threshold: 0.1 });
-            
+
             cards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
@@ -252,24 +184,8 @@
                 observer.observe(card);
             });
         });
-    </script>
 
-    <!-- Add to Home Screen and Share JS (新增) -->
-    <script>
-        // For adding to home screen (PWA prompt)
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            deferredPrompt = e;
-        });
-        function promptInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-            } else {
-                alert('Add our site to your home screen from your browser menu!');
-            }
-        }
-
-        // For sharing (Web Share API)
+        // Web Share API
         async function shareSite() {
             try {
                 await navigator.share({
@@ -277,9 +193,22 @@
                     text: 'Unlock your luck with free tools!',
                     url: window.location.href
                 });
-                // 可以调用 /record_share 如果需要记录
             } catch (err) {
                 alert('Share failed: ' + err);
+            }
+        }
+
+        // PWA Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+        });
+
+        function promptInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+            } else {
+                alert('Add our site to your home screen from your browser menu!');
             }
         }
     </script>
