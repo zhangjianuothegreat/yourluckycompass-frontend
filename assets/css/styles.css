@@ -101,11 +101,20 @@ nav a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('https://via.placeholder.com/1920x1080') center/cover no-repeat; /* Replace with your hero image */
     color: #FFFFFF;
     text-align: center;
     padding: 2rem;
     position: relative;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .hero::after {
@@ -119,7 +128,7 @@ nav a:hover {
     z-index: 1;
 }
 
-.hero h1, .hero p {
+.hero h1, .hero p, .hero button {
     position: relative;
     z-index: 2;
 }
