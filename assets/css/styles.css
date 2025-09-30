@@ -172,6 +172,7 @@ h1, h2, h3 {
     height: 100%;
     z-index: -1; /* 放在最底层，不遮挡内容 */
     overflow: hidden;
+    contain: layout paint; 
 }
 
 /* 关键：添加半透明遮罩，压暗图片，颜色呼应品牌深紫 */
