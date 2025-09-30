@@ -6,46 +6,71 @@
     <meta name="description" content="Find your lucky city based on your birth date using the ancient 28 Lunar Mansions system. Discover cities that align with your destiny!">
     <meta name="keywords" content="lucky city, 28 lunar mansions, Chinese astrology, destiny match, city compatibility">
     <title>Find Your Lucky City - Your Lucky Compass</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
+    <!-- 统一引用主站资源（删除Tailwind，避免样式冲突） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/css/styles.css">
 </head>
-<body class="bg-gray-100 font-sans text-gray-800">
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-center space-x-4">
-            <a href="https://www.yourluckycompass.com/" class="text-blue-600 hover:text-blue-700">Home</a>
-            <a href="https://www.yourluckycompass.com/bazi" class="text-blue-600 hover:text-blue-700">Bazi Reading</a>
-            <a href="https://www.yourluckycompass.com/lucky_city" class="text-blue-600 hover:text-blue-700 font-bold">Lucky City Match</a>
-            <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:text-blue-700">Lucky Compass</a>
-            <a href="https://www.yourluckycompass.com/sound_bath" class="text-blue-600 hover:text-blue-700">Sound Bath</a>
+<body>
+    <!-- 导航栏：复用主站 .site-header 样式，当前页标淡紫+加粗 -->
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">Your Lucky Compass</a>
+            <!-- 桌面端导航：统一主站风格，当前页突出 -->
+            <nav class="desktop-nav">
+                <a href="/bazi">Bazi Reading</a>
+                <a href="/lucky_city" style="color: var(--color-purple); font-weight: 600;">Lucky City Match</a>
+                <a href="/lucky_compass">Lucky Compass</a>
+                <a href="/sound_bath">Sound Bath</a>
+            </nav>
+            <!-- 移动端汉堡菜单：复用主站样式 -->
+            <button class="hamburger" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
-    </nav>
+        <!-- 移动端折叠菜单：统一主站样式 -->
+        <nav class="mobile-nav">
+            <a href="/bazi">Bazi Reading</a>
+            <a href="/lucky_city" style="color: var(--color-purple); font-weight: 600;">Lucky City Match</a>
+            <a href="/lucky_compass">Lucky Compass</a>
+            <a href="/sound_bath">Sound Bath</a>
+        </nav>
+    </header>
 
-    <div class="container mx-auto p-4 max-w-4xl">
-        <header class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-blue-800">Find Your Lucky City</h1>
-            <p class="mt-2 text-lg">Discover cities that vibe with your destiny using ancient Chinese astrology!</p>
+    <!-- 主内容区：避开导航栏，复用主站 .container 样式 -->
+    <div class="container mx-auto p-4 max-w-4xl" style="margin-top: 80px;">
+        <!-- 标题区：淡紫背景+白色文字，与主站 Hero 风格呼应 -->
+        <header class="text-center mb-8 p-6 rounded-lg" style="background-color: var(--color-purple);">
+            <h1 class="text-3xl font-bold text-white">Find Your Lucky City</h1>
+            <p class="mt-2 text-lg text-white">Discover cities that vibe with your destiny using ancient Chinese astrology!</p>
         </header>
 
+        <!-- 表单区域：复用主站卡片样式（白色背景+阴影） -->
         <section class="bg-white p-6 rounded-lg shadow-md mb-6">
             <p class="mb-4 text-gray-600">
                 For over 3,000 years, the 28 Lunar Mansions have guided people to find harmony with their surroundings. By matching your birth date to a city’s key moment—like Singapore’s independence in 1965, Hong Kong’s return to China in 1997, Ottawa’s rise as Canada’s capital in 1867, or Seattle’s founding in 1851 when it kicked off its tech boom—you’ll find cities that align with your cosmic energy. Ever wonder why some thrive in one place but not another? Our algorithm uses the 28 constellations to reveal your perfect city match. Try it and see where your stars lead!
             </p>
 
+            <!-- 错误提示：保留逻辑，调整颜色为淡紫 -->
             {% if error %}
-                <p class="text-red-600 font-bold mb-4">{{ error }}</p>
+                <p class="font-bold mb-4" style="color: var(--color-purple);">{{ error }}</p>
             {% endif %}
 
+            <!-- 表单：统一输入框/按钮样式，与主站一致 -->
             <form method="POST" action="{{ url_for('lucky_city') }}" class="space-y-4">
                 <div class="form-group">
-                    <label for="birth_date" class="block text-blue-800 font-medium mb-1">Your Birth Date (YYYYMMDD or YYYY-MM-DD):</label>
+                    <label for="birth_date" class="block font-medium mb-1" style="color: var(--color-text);">Your Birth Date (YYYYMMDD or YYYY-MM-DD):</label>
+                    <!-- 输入框：复用主站浅灰背景+无边框样式 -->
                     <input type="text" id="birth_date" name="birth_date" value="{{ birth_date }}" 
                            placeholder="e.g., 19900515 or 1990-05-15" maxlength="10" oninput="formatDateInput(this)"
-                           class="w-full max-w-xs p-2 border rounded-md">
+                           class="w-full max-w-xs p-2 rounded-md" style="background-color: var(--color-gray); border: none;">
                 </div>
                 <div class="form-group">
-                    <label for="country" class="block text-blue-800 font-medium mb-1">Select Country:</label>
-                    <select id="country" name="country" class="w-full max-w-xs p-2 border rounded-md">
+                    <label for="country" class="block font-medium mb-1" style="color: var(--color-text);">Select Country:</label>
+                    <!-- 下拉框：统一样式 -->
+                    <select id="country" name="country" class="w-full max-w-xs p-2 rounded-md" style="background-color: var(--color-gray); border: none;">
                         <option value="All" {% if selected_country == 'All' %}selected{% endif %}>All</option>
                         {% for c in countries %}
                             <option value="{{ c }}" {% if selected_country == c %}selected{% endif %}>{{ c }}</option>
@@ -53,8 +78,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="state_country" class="block text-blue-800 font-medium mb-1">Select State/Region:</label>
-                    <select id="state_country" name="state_country" class="w-full max-w-xs p-2 border rounded-md">
+                    <label for="state_country" class="block font-medium mb-1" style="color: var(--color-text);">Select State/Region:</label>
+                    <select id="state_country" name="state_country" class="w-full max-w-xs p-2 rounded-md" style="background-color: var(--color-gray); border: none;">
                         {% for s in states %}
                             <option value="{{ s }}" {% if selected_state == s %}selected{% endif %}>{{ s }}</option>
                         {% endfor %}
@@ -64,33 +89,35 @@
                     <p class="text-sm text-gray-600 mb-2">
                         Our database includes over 3,000 cities’ founding dates, pulled from official records, city histories, and Wikipedia. But history can be tricky—dates might vary! Before picking your lucky city, double-check its key moment, like when it was founded, became a capital, or hit a major turning point (think Ottawa in 1867 when it became Canada’s capital, or Seattle in 1851 when it kicked off its tech boom). Missing a city? Be a history detective! Hunt down its founding or game-changing date in archives and see how it vibes with your destiny.
                     </p>
-                    <label for="manual_city" class="block text-blue-800 font-medium mb-1">Manual City Input - City Name:</label>
+                    <label for="manual_city" class="block font-medium mb-1" style="color: var(--color-text);">Manual City Input - City Name:</label>
                     <input type="text" id="manual_city" name="manual_city" value="{{ manual_city }}" 
-                           placeholder="e.g., Seattle" class="w-full max-w-xs p-2 border rounded-md">
+                           placeholder="e.g., Seattle" class="w-full max-w-xs p-2 rounded-md" style="background-color: var(--color-gray); border: none;">
                 </div>
                 <div class="form-group">
-                    <label for="manual_date" class="block text-blue-800 font-medium mb-1">City Incorporation Date (YYYYMMDD or YYYY-MM-DD):</label>
+                    <label for="manual_date" class="block font-medium mb-1" style="color: var(--color-text);">City Incorporation Date (YYYYMMDD or YYYY-MM-DD):</label>
                     <input type="text" id="manual_date" name="manual_date" value="{{ manual_date }}" 
                            placeholder="e.g., 18510903 or 1851-09-03" maxlength="10" oninput="formatDateInput(this)"
-                           class="w-full max-w-xs p-2 border rounded-md">
+                           class="w-full max-w-xs p-2 rounded-md" style="background-color: var(--color-gray); border: none;">
                 </div>
+                <!-- 按钮：复用主站样式（金色提交+淡紫重置） -->
                 <div class="flex space-x-4 justify-center">
-                    <button type="submit" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Discover Your Lucky City!</button>
+                    <button type="submit" class="btn btn-primary">Discover Your Lucky City!</button>
                     <button type="button" onclick="window.location.href='{{ url_for('lucky_city') }}'" 
-                            class="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600">Reset</button>
+                            class="btn btn-outline">Reset</button>
                 </div>
             </form>
         </section>
 
+        <!-- 用户星座/元素结果：保留逻辑，调整文字颜色 -->
         {% if user_const or user_element %}
             <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <p class="text-gray-800">
+                <p style="color: var(--color-text);">
                     <strong>Your Lunar Mansion:</strong> {{ user_const | translate_constellation }} 
                     <br><strong>Your Mansion Element:</strong> {{ user_element }}
                     <br><small class="text-gray-600">Think of the 28 Lunar Mansions as the Chinese version of zodiac signs, but way cooler and more precise! Instead of 12 signs, the ancient Chinese mapped the sky into 28 segments, each tied to a specific star pattern that influences your destiny. Like Western astrology tracks the stars to predict your vibe, these mansions use the moon’s path to pinpoint cosmic energies that shape your life. Each mansion has a unique flavor—some spark creativity, others boost ambition—and they’re grouped by elements like Water, Fire, Wood, Metal, or Earth. Your birth date locks you into one of these starry zones, revealing cities and paths that sync with your cosmic rhythm. It’s like a celestial GPS for your soul, backed by 3,000 years of stargazing wisdom!</small>
                 </p>
                 <p class="text-sm text-gray-600 mt-2">
-                    Once you've found your lucky city, head to our <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:underline">Lucky Compass</a> (premium tool) to discover your personal lucky direction. Then, in that city, face your direction and dive into a <a href="https://www.yourluckycompass.com/sound_bath" class="text-blue-600 hover:underline">Sound Bath session</a>—breathe deep, let the waves or wind vibes wash over you, and sync with the universe for that ultimate zen reset. It’s like your cosmic power-up!
+                    Once you've found your lucky city, head to our <a href="https://www.yourluckycompass.com/lucky_compass" style="color: var(--color-purple); text-decoration: underline;">Lucky Compass</a> (premium tool) to discover your personal lucky direction. Then, in that city, face your direction and dive into a <a href="https://www.yourluckycompass.com/sound_bath" style="color: var(--color-purple); text-decoration: underline;">Sound Bath session</a>—breathe deep, let the waves or wind vibes wash over you, and sync with the universe for that ultimate zen reset. It’s like your cosmic power-up!
                 </p>
 				<p class="text-sm text-gray-600 mt-2">
                     Yo, insider scoop: Got your lucky city? Hop in the car for a quick getaway! That place is like a luck magnet—people are all smiles, even the pigeons seem to vibe with you. It’s a burst of inspiration and pure good feels, like the universe just gave you a high-five!
@@ -98,16 +125,18 @@
             </section>
         {% endif %}
 
+        <!-- 手动输入城市结果：保留逻辑，调整标题颜色 -->
         {% if manual_result %}
             <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Manual City Match</h2>
+                <h2 class="text-xl font-semibold mb-4" style="color: var(--color-purple);">Manual City Match</h2>
+                <!-- 表格：调整表头背景+文字颜色 -->
                 <table class="w-full border-collapse">
-                    <tr class="bg-gray-50">
-                        <th class="border p-2 text-blue-800">City</th>
-                        <th class="border p-2 text-blue-800">Incorporation Date</th>
-                        <th class="border p-2 text-blue-800">Match Score</th>
-                        <th class="border p-2 text-blue-800">Lunar Mansion</th>
-                        <th class="border p-2 text-blue-800">Element</th>
+                    <tr style="background-color: var(--color-gray);">
+                        <th class="border p-2" style="color: var(--color-purple);">City</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Incorporation Date</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Match Score</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Lunar Mansion</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Element</th>
                     </tr>
                     <tr>
                         <td class="border p-2">{{ manual_result.city }}</td>
@@ -120,26 +149,28 @@
             </section>
         {% endif %}
 
+        <!-- 数据库城市结果：保留逻辑，统一样式 -->
         {% if cities %}
             <section class="bg-white p-6 rounded-lg shadow-md mb-6">
                 <div id="city-results"></div>
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Database Matches (Page {{ page }})</h2>
+                <h2 class="text-xl font-semibold mb-4" style="color: var(--color-purple);">Database Matches (Page {{ page }})</h2>
                 <p class="mb-4">
                     Sort by Match Score:
-                    <a href="{{ url_for('lucky_city', page=page, sort='desc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline">High to Low ↓</a>
+                    <a href="{{ url_for('lucky_city', page=page, sort='desc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" style="color: var(--color-purple); text-decoration: underline;">High to Low ↓</a>
                     |
-                    <a href="{{ url_for('lucky_city', page=page, sort='asc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline">Low to High ↑</a>
+                    <a href="{{ url_for('lucky_city', page=page, sort='asc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" style="color: var(--color-purple); text-decoration: underline;">Low to High ↑</a>
                 </p>
+                <!-- 表格：调整表头样式 -->
                 <table class="w-full border-collapse">
-                    <tr class="bg-gray-50">
-                        <th class="border p-2 text-blue-800">City</th>
-                        <th class="border p-2 text-blue-800">State/Region</th>
-                        <th class="border p-2 text-blue-800">Country</th>
-                        <th class="border p-2 text-blue-800">Incorporation Date</th>
-                        <th class="border p-2 text-blue-800">Match Score</th>
-                        <th class="border p-2 text-blue-800">Lunar Mansion</th>
-                        <th class="border p-2 text-blue-800">Element</th>
-                        <th class="border p-2 text-blue-800">Description</th>
+                    <tr style="background-color: var(--color-gray);">
+                        <th class="border p-2" style="color: var(--color-purple);">City</th>
+                        <th class="border p-2" style="color: var(--color-purple);">State/Region</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Country</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Incorporation Date</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Match Score</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Lunar Mansion</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Element</th>
+                        <th class="border p-2" style="color: var(--color-purple);">Description</th>
                     </tr>
                     {% for city in cities %}
                         <tr>
@@ -161,52 +192,57 @@
                         {% endif %}
                     {% endfor %}
                 </table>
+                <!-- 分页：调整链接颜色 -->
                 <div class="pagination text-center mt-4">
                     {% if page > 1 %}
-                        <a href="{{ url_for('lucky_city', page=page-1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline mx-2">Previous Page</a>
+                        <a href="{{ url_for('lucky_city', page=page-1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" style="color: var(--color-purple); text-decoration: underline; margin: 0 0.5rem;">Previous Page</a>
                     {% endif %}
                     {% if total_matches > page * 10 %}
-                        <a href="{{ url_for('lucky_city', page=page+1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline mx-2">Next Page</a>
+                        <a href="{{ url_for('lucky_city', page=page+1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" style="color: var(--color-purple); text-decoration: underline; margin: 0 0.5rem;">Next Page</a>
                     {% endif %}
                 </div>
             </section>
 
-            <!-- New Section: Discover More Luck -->
+            <!-- 更多工具推荐：统一卡片/按钮样式 -->
             <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Discover More Luck</h2>
+                <h2 class="text-xl font-semibold mb-4" style="color: var(--color-purple);">Discover More Luck</h2>
                 <p class="mb-4">Found your lucky city? Keep exploring with these tools to boost your fortune and well-being!</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-lg font-medium mb-2 text-blue-800">Get Your Bazi Reading</h3>
+                    <div class="p-4 rounded-md" style="background-color: var(--color-gray);">
+                        <h3 class="text-lg font-medium mb-2" style="color: var(--color-purple);">Get Your Bazi Reading</h3>
                         <p class="text-sm text-gray-600 mb-2">Uncover your Five Elements balance and personality insights.</p>
-                        <a href="https://www.yourluckycompass.com/bazi" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Try Bazi Reading</a>
+                        <a href="https://www.yourluckycompass.com/bazi" class="btn btn-primary">Try Bazi Reading</a>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-lg font-medium mb-2 text-blue-800">Find Your Lucky Direction</h3>
+                    <div class="p-4 rounded-md" style="background-color: var(--color-gray);">
+                        <h3 class="text-lg font-medium mb-2" style="color: var(--color-purple);">Find Your Lucky Direction</h3>
                         <p class="text-sm text-gray-600 mb-2">Discover directions that enhance your success and energy.</p>
-                        <a href="https://www.yourluckycompass.com/lucky_compass" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Use Lucky Compass</a>
+                        <a href="https://www.yourluckycompass.com/lucky_compass" class="btn btn-primary">Use Lucky Compass</a>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-lg font-medium mb-2 text-blue-800">Relax with Sound Bath</h3>
+                    <div class="p-4 rounded-md" style="background-color: var(--color-gray);">
+                        <h3 class="text-lg font-medium mb-2" style="color: var(--color-purple);">Relax with Sound Bath</h3>
                         <p class="text-sm text-gray-600 mb-2">Balance your energy with soothing sound meditations.</p>
-                        <a href="https://www.yourluckycompass.com/sound_bath" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Start Sound Bath</a>
+                        <a href="https://www.yourluckycompass.com/sound_bath" class="btn btn-primary">Start Sound Bath</a>
                     </div>
                 </div>
             </section>
         {% endif %}
 
-        <!-- Ad Placeholder -->
+        <!-- 广告占位：复用主站 .ad 样式 -->
         <div id="ad-placeholder" class="ad text-center text-gray-500 my-4">
             <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
             Ad Space - Coming Soon!
         </div>
 
-        <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>Based on ancient Chinese wisdom | For entertainment only</p>
-            <p>© 2025 Your Lucky Compass</p>
+        <!-- 页脚：复用主站 .site-footer 样式（深紫背景+白色文字） -->
+        <footer class="site-footer mt-8">
+            <div class="container">
+                <p>Based on ancient Chinese wisdom | For entertainment only</p>
+                <p>© 2025 Your Lucky Compass</p>
+            </div>
         </footer>
     </div>
 
+    <!-- 脚本：完全保留原有逻辑，无修改 -->
     <script>
         function formatDateInput(input) {
             let value = input.value.replace(/[^0-9]/g, '');
