@@ -3,73 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover your five elements balance with our free Chinese astrology quiz. Get insights on personality, health, and luck.">
-    <meta name="keywords" content="Chinese astrology, five elements calculator, Bazi reading, destiny insights, zodiac forecast">
+    <meta name="description" content="Discover your five elements balance with our free Chinese astrology quiz.">
+    <meta name="keywords" content="Chinese astrology, five elements calculator, Bazi reading">
     <title>Five Elements Destiny Calculator - Your Lucky Compass</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
+    <!-- 统一引用主站资源（确保字体、样式、图标一致） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://zhangjianuothegreat.github.io/yourluckycompass-frontend/assets/css/styles.css">
 </head>
-<body class="bg-gray-100 font-sans text-gray-800">
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="/">Home</a>
-        <a href="/bazi">Bazi Reading</a>
-        <a href="/lucky_city">Lucky City Match</a>
-        <a href="/lucky_compass">Lucky Compass</a>
-        <a href="/sound_bath">Sound Bath</a>
-    </nav>
+<body>
+    <!-- 导航栏：复用主站 .site-header 样式，当前页文字标淡紫+加粗 -->
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">Your Lucky Compass</a>
+            <nav class="desktop-nav">
+                <!-- 修正：用 style 调用主站淡紫变量，加字体加粗 -->
+                <a href="/bazi" style="color: var(--color-purple); font-weight: 600;">Bazi Reading</a>
+                <a href="/lucky_city">Lucky City Match</a>
+                <a href="/lucky_compass">Lucky Compass</a>
+                <a href="/sound_bath">Sound Bath</a>
+            </nav>
+            <button class="hamburger" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <nav class="mobile-nav">
+            <a href="/bazi" style="color: var(--color-purple); font-weight: 600;">Bazi Reading</a>
+            <a href="/lucky_city">Lucky City Match</a>
+            <a href="/lucky_compass">Lucky Compass</a>
+            <a href="/sound_bath">Sound Bath</a>
+        </nav>
+    </header>
 
-    <div class="container mx-auto p-4 max-w-4xl">
-        <header class="text-center mb-8">
-            <h1 class="text-3xl font-bold">Discover Your Five Elements Balance</h1>
-            <p class="mt-2 text-lg">Free Quiz to Reveal Your Personality and Luck</p>
+    <!-- 主内容区：避开导航栏，复用主站容器样式 -->
+    <div class="container mx-auto p-4 max-w-4xl" style="margin-top: 80px;">
+        <!-- 标题区：淡紫背景+白色文字，与主站 Hero 风格呼应 -->
+        <header class="text-center mb-8 p-6 bg-purple rounded-lg" style="background-color: var(--color-purple);">
+            <h1 class="text-3xl font-bold text-white">Discover Your Five Elements Balance</h1>
+            <p class="mt-2 text-lg text-white">Free Quiz to Reveal Your Personality and Luck</p>
         </header>
 
+        <!-- 表单卡片：复用主站功能区卡片样式（白色背景+阴影+圆角） -->
         <section class="bg-white p-6 rounded-lg shadow-md">
             <p class="mb-4">Feeling off-balance? Ancient Chinese wisdom links your birth to nature's cycles and the Five Elements (Wood, Fire, Earth, Metal, Water). These shape your traits, relationships, and life path.</p>
-            <p class="mb-4 font-semibold">Take this quick free quiz to find your elemental profile. No strings attached!</p>
+            <p class="mb-4 font-semibold" style="color: var(--color-purple);">Take this quick free quiz to find your elemental profile. No strings attached!</p>
 
+            <!-- 表单：补充输入框样式，与主站统一 -->
             <form action="/bazi/calculate" method="POST" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                        <label for="year" class="block text-sm font-medium">Birth Year</label>
-                        <input type="number" id="year" name="year" required class="w-full p-2 border rounded-md" placeholder="e.g., 2001">
+                        <label for="year" class="block text-sm font-medium" style="color: var(--color-text);">Birth Year</label>
+                        <!-- 修正：添加主站输入框样式 -->
+                        <input type="number" id="year" name="year" required class="w-full p-2 border rounded-md" style="background-color: var(--color-gray); border: none;" placeholder="e.g., 2001">
                     </div>
                     <div>
-                        <label for="month" class="block text-sm font-medium">Birth Month</label>
-                        <input type="number" id="month" name="month" required min="1" max="12" class="w-full p-2 border rounded-md" placeholder="e.g., 3">
+                        <label for="month" class="block text-sm font-medium" style="color: var(--color-text);">Birth Month</label>
+                        <input type="number" id="month" name="month" required min="1" max="12" class="w-full p-2 border rounded-md" style="background-color: var(--color-gray); border: none;" placeholder="e.g., 3">
                     </div>
                     <div>
-                        <label for="day" class="block text-sm font-medium">Birth Day</label>
-                        <input type="number" id="day" name="day" required min="1" max="31" class="w-full p-2 border rounded-md" placeholder="e.g., 31">
+                        <label for="day" class="block text-sm font-medium" style="color: var(--color-text);">Birth Day</label>
+                        <input type="number" id="day" name="day" required min="1" max="31" class="w-full p-2 border rounded-md" style="background-color: var(--color-gray); border: none;" placeholder="e.g., 31">
                     </div>
                 </div>
 
                 <div>
-                    <label for="hour" class="block text-sm font-medium">Birth Hour (Optional)</label>
-                    <input type="number" id="hour" name="hour" min="0" max="23" class="w-full p-2 border rounded-md" placeholder="e.g., 5">
+                    <label for="hour" class="block text-sm font-medium" style="color: var(--color-text);">Birth Hour (Optional)</label>
+                    <input type="number" id="hour" name="hour" min="0" max="23" class="w-full p-2 border rounded-md" style="background-color: var(--color-gray); border: none;" placeholder="e.g., 5">
                     <p class="text-sm text-gray-500 mt-1">No hour? That's fine! Results are still spot-on, but adding it gives 25% more detail.</p>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Get My Results Now</button>
+                <!-- 按钮：复用主站金色渐变样式，全屏宽度 -->
+                <button type="submit" class="btn btn-primary w-full">Get My Results Now</button>
             </form>
         </section>
 
-        <!-- Ad Placeholder -->
-        <div id="ad-placeholder" class="ad">
-            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
-            Ad Space - Coming Soon!
-        </div>
-
-        <footer class="text-center mt-8 text-sm text-gray-500">
-            <p>Based on ancient Chinese wisdom | For entertainment only</p>
-            <p>© 2025 Your Lucky Compass</p>
+        <!-- 广告占位：复用主站 .ad 样式 -->
+        <div id="ad-placeholder" class="ad mt-6">Ad Space - Coming Soon!</div>
+        
+        <!-- 页脚：复用主站 .site-footer 样式（深紫背景+白色文字） -->
+        <footer class="site-footer mt-8">
+            <div class="container">
+                <p>Based on ancient Chinese wisdom | For entertainment only</p>
+                <p>© 2025 Your Lucky Compass</p>
+            </div>
         </footer>
     </div>
 
-    <!-- Share and Add to Home Screen JS -->
+    <!-- 脚本：保留原功能，确保PWA和分享正常 -->
     <script>
-        // For adding to home screen (PWA prompt)
+        // 保留原脚本（PWA添加到桌面功能）
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
             deferredPrompt = e;
@@ -82,7 +106,7 @@
             }
         }
 
-        // For sharing (Web Share API)
+        // 保留原脚本（网页分享功能）
         async function shareSite() {
             try {
                 await navigator.share({
@@ -90,7 +114,6 @@
                     text: 'Discover your five elements balance!',
                     url: window.location.href
                 });
-                // 可以调用 /record_share 如果需要记录
             } catch (err) {
                 alert('Share failed: ' + err);
             }
