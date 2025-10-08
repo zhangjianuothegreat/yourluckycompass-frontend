@@ -7,17 +7,17 @@
     <meta name="keywords" content="lucky city, 28 lunar mansions, Chinese astrology, destiny match, city compatibility">
     <title>Find Your Lucky City - Your Lucky Compass</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-md p-4">
         <div class="container mx-auto flex justify-center space-x-4">
-            <a href="https://www.yourluckycompass.com/" class="text-blue-600 hover:text-blue-700">Home</a>
-            <a href="https://www.yourluckycompass.com/bazi" class="text-blue-600 hover:text-blue-700">Bazi Reading</a>
-            <a href="https://www.yourluckycompass.com/lucky_city" class="text-blue-600 hover:text-blue-700 font-bold">Lucky City Match</a>
-            <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:text-blue-700">Lucky Compass</a>
-            <a href="https://www.yourluckycompass.com/sound_bath" class="text-blue-600 hover:text-blue-700">Sound Bath</a>
+            <a href="/" class="text-blue-600 hover:text-blue-700">Home</a>
+            <a href="/bazi" class="text-blue-600 hover:text-blue-700">Bazi Reading</a>
+            <a href="/lucky_city" class="text-blue-600 hover:text-blue-700 font-bold">Lucky City Match</a>
+            <a href="/lucky_compass" class="text-blue-600 hover:text-blue-700">Lucky Compass</a>
+            <a href="/sound_bath" class="text-blue-600 hover:text-blue-700">Sound Bath</a>
         </div>
     </nav>
 
@@ -29,175 +29,97 @@
 
         <section class="bg-white p-6 rounded-lg shadow-md mb-6">
             <p class="mb-4 text-gray-600">
-                For over 3,000 years, the 28 Lunar Mansions have guided people to find harmony with their surroundings. By matching your birth date to a city’s key moment—like Singapore’s independence in 1965, Hong Kong’s return to China in 1997, Ottawa’s rise as Canada’s capital in 1867, or Seattle’s founding in 1851 when it kicked off its tech boom—you’ll find cities that align with your cosmic energy. Ever wonder why some thrive in one place but not another? Our algorithm uses the 28 constellations to reveal your perfect city match. Try it and see where your stars lead!
+                For over 3,000 years, the 28 Lunar Mansions have guided people to find harmony with their surroundings...
             </p>
 
-            {% if error %}
-                <p class="text-red-600 font-bold mb-4">{{ error }}</p>
-            {% endif %}
+            <div id="error" class="text-red-600 font-bold mb-4 hidden"></div>
 
-            <form method="POST" action="{{ url_for('lucky_city') }}" class="space-y-4">
+            <form id="lucky-city-form" method="POST" class="space-y-4">
                 <div class="form-group">
                     <label for="birth_date" class="block text-blue-800 font-medium mb-1">Your Birth Date (YYYYMMDD or YYYY-MM-DD):</label>
-                    <input type="text" id="birth_date" name="birth_date" value="{{ birth_date }}" 
-                           placeholder="e.g., 19900515 or 1990-05-15" maxlength="10" oninput="formatDateInput(this)"
-                           class="w-full max-w-xs p-2 border rounded-md">
+                    <input type="text" id="birth_date" name="birth_date" placeholder="e.g., 19900515 or 1990-05-15" maxlength="10" oninput="formatDateInput(this)" class="w-full max-w-xs p-2 border rounded-md">
                 </div>
                 <div class="form-group">
                     <label for="country" class="block text-blue-800 font-medium mb-1">Select Country:</label>
                     <select id="country" name="country" class="w-full max-w-xs p-2 border rounded-md">
-                        <option value="All" {% if selected_country == 'All' %}selected{% endif %}>All</option>
-                        {% for c in countries %}
-                            <option value="{{ c }}" {% if selected_country == c %}selected{% endif %}>{{ c }}</option>
-                        {% endfor %}
+                        <option value="All">All</option>
+                        <!-- 动态填充国家列表 -->
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="state_country" class="block text-blue-800 font-medium mb-1">Select State/Region:</label>
                     <select id="state_country" name="state_country" class="w-full max-w-xs p-2 border rounded-md">
-                        {% for s in states %}
-                            <option value="{{ s }}" {% if selected_state == s %}selected{% endif %}>{{ s }}</option>
-                        {% endfor %}
+                        <option value="All">All</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <p class="text-sm text-gray-600 mb-2">
-                        Our database includes over 3,000 cities’ founding dates, pulled from official records, city histories, and Wikipedia. But history can be tricky—dates might vary! Before picking your lucky city, double-check its key moment, like when it was founded, became a capital, or hit a major turning point (think Ottawa in 1867 when it became Canada’s capital, or Seattle in 1851 when it kicked off its tech boom). Missing a city? Be a history detective! Hunt down its founding or game-changing date in archives and see how it vibes with your destiny.
+                        Our database includes over 3,000 cities’ founding dates...
                     </p>
                     <label for="manual_city" class="block text-blue-800 font-medium mb-1">Manual City Input - City Name:</label>
-                    <input type="text" id="manual_city" name="manual_city" value="{{ manual_city }}" 
-                           placeholder="e.g., Seattle" class="w-full max-w-xs p-2 border rounded-md">
+                    <input type="text" id="manual_city" name="manual_city" placeholder="e.g., Seattle" class="w-full max-w-xs p-2 border rounded-md">
                 </div>
                 <div class="form-group">
                     <label for="manual_date" class="block text-blue-800 font-medium mb-1">City Incorporation Date (YYYYMMDD or YYYY-MM-DD):</label>
-                    <input type="text" id="manual_date" name="manual_date" value="{{ manual_date }}" 
-                           placeholder="e.g., 18510903 or 1851-09-03" maxlength="10" oninput="formatDateInput(this)"
-                           class="w-full max-w-xs p-2 border rounded-md">
+                    <input type="text" id="manual_date" name="manual_date" placeholder="e.g., 18510903 or 1851-09-03" maxlength="10" oninput="formatDateInput(this)" class="w-full max-w-xs p-2 border rounded-md">
                 </div>
                 <div class="flex space-x-4 justify-center">
                     <button type="submit" class="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Discover Your Lucky City!</button>
-                    <button type="button" onclick="window.location.href='{{ url_for('lucky_city') }}'" 
-                            class="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600">Reset</button>
+                    <button type="button" onclick="resetForm()" class="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600">Reset</button>
                 </div>
             </form>
         </section>
 
-        {% if user_const or user_element %}
-            <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <p class="text-gray-800">
-                    <strong>Your Lunar Mansion:</strong> {{ user_const | translate_constellation }} 
-                    <br><strong>Your Mansion Element:</strong> {{ user_element }}
-                    <br><small class="text-gray-600">Think of the 28 Lunar Mansions as the Chinese version of zodiac signs, but way cooler and more precise! Instead of 12 signs, the ancient Chinese mapped the sky into 28 segments, each tied to a specific star pattern that influences your destiny. Like Western astrology tracks the stars to predict your vibe, these mansions use the moon’s path to pinpoint cosmic energies that shape your life. Each mansion has a unique flavor—some spark creativity, others boost ambition—and they’re grouped by elements like Water, Fire, Wood, Metal, or Earth. Your birth date locks you into one of these starry zones, revealing cities and paths that sync with your cosmic rhythm. It’s like a celestial GPS for your soul, backed by 3,000 years of stargazing wisdom!</small>
-                </p>
-                <p class="text-sm text-gray-600 mt-2">
-                    Once you've found your lucky city, head to our <a href="https://www.yourluckycompass.com/lucky_compass" class="text-blue-600 hover:underline">Lucky Compass</a> (premium tool) to discover your personal lucky direction. Then, in that city, face your direction and dive into a <a href="https://www.yourluckycompass.com/sound_bath" class="text-blue-600 hover:underline">Sound Bath session</a>—breathe deep, let the waves or wind vibes wash over you, and sync with the universe for that ultimate zen reset. It’s like your cosmic power-up!
-                </p>
-				<p class="text-sm text-gray-600 mt-2">
-                    Yo, insider scoop: Got your lucky city? Hop in the car for a quick getaway! That place is like a luck magnet—people are all smiles, even the pigeons seem to vibe with you. It’s a burst of inspiration and pure good feels, like the universe just gave you a high-five!
-                </p>
-            </section>
-        {% endif %}
+        <section id="user-info" class="bg-white p-6 rounded-lg shadow-md mb-6 hidden">
+            <p class="text-gray-800">
+                <strong>Your Lunar Mansion:</strong> <span id="user-const"></span>
+                <br><strong>Your Mansion Element:</strong> <span id="user-element"></span>
+                <br><small class="text-gray-600">Think of the 28 Lunar Mansions as the Chinese version of zodiac signs...</small>
+            </p>
+        </section>
 
-        {% if manual_result %}
-            <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Manual City Match</h2>
-                <table class="w-full border-collapse">
-                    <tr class="bg-gray-50">
-                        <th class="border p-2 text-blue-800">City</th>
-                        <th class="border p-2 text-blue-800">Incorporation Date</th>
-                        <th class="border p-2 text-blue-800">Match Score</th>
-                        <th class="border p-2 text-blue-800">Lunar Mansion</th>
-                        <th class="border p-2 text-blue-800">Element</th>
-                    </tr>
-                    <tr>
-                        <td class="border p-2">{{ manual_result.city }}</td>
-                        <td class="border p-2">{{ manual_result.date }}</td>
-                        <td class="border p-2">{{ manual_result.score }}%</td>
-                        <td class="border p-2">{{ manual_result.constellation | translate_constellation }}</td>
-                        <td class="border p-2">{{ manual_result.element }}</td>
-                    </tr>
-                </table>
-            </section>
-        {% endif %}
+        <section id="manual-result" class="bg-white p-6 rounded-lg shadow-md mb-6 hidden">
+            <h2 class="text-xl font-semibold mb-4 text-blue-800">Manual City Match</h2>
+            <table class="w-full border-collapse">
+                <tr class="bg-gray-50">
+                    <th class="border p-2 text-blue-800">City</th>
+                    <th class="border p-2 text-blue-800">Incorporation Date</th>
+                    <th class="border p-2 text-blue-800">Match Score</th>
+                    <th class="border p-2 text-blue-800">Lunar Mansion</th>
+                    <th class="border p-2 text-blue-800">Element</th>
+                </tr>
+                <tr id="manual-result-row"></tr>
+            </table>
+        </section>
 
-        {% if cities %}
-            <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <div id="city-results"></div>
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Database Matches (Page {{ page }})</h2>
-                <p class="mb-4">
-                    Sort by Match Score:
-                    <a href="{{ url_for('lucky_city', page=page, sort='desc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline">High to Low ↓</a>
-                    |
-                    <a href="{{ url_for('lucky_city', page=page, sort='asc', birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline">Low to High ↑</a>
-                </p>
-                <table class="w-full border-collapse">
-                    <tr class="bg-gray-50">
-                        <th class="border p-2 text-blue-800">City</th>
-                        <th class="border p-2 text-blue-800">State/Region</th>
-                        <th class="border p-2 text-blue-800">Country</th>
-                        <th class="border p-2 text-blue-800">Incorporation Date</th>
-                        <th class="border p-2 text-blue-800">Match Score</th>
-                        <th class="border p-2 text-blue-800">Lunar Mansion</th>
-                        <th class="border p-2 text-blue-800">Element</th>
-                        <th class="border p-2 text-blue-800">Description</th>
-                    </tr>
-                    {% for city in cities %}
-                        <tr>
-                            <td class="border p-2">{{ city.name }}</td>
-                            <td class="border p-2">{{ city.state_country }}</td>
-                            <td class="border p-2">{{ city.country }}</td>
-                            <td class="border p-2">{{ city.incorporation_date }}</td>
-                            <td class="border p-2">{{ city.match_score }}%</td>
-                            <td class="border p-2">{{ city.constellation | translate_constellation }}</td>
-                            <td class="border p-2">{{ city.element }}</td>
-                            <td class="border p-2">{{ city.description }}</td>
-                        </tr>
-                        {% if loop.index == 5 %}
-                            <tr>
-                                <td colspan="8" class="border p-2 text-center text-gray-500">
-                                    Ad Space - Coming Soon!
-                                </td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </table>
-                <div class="pagination text-center mt-4">
-                    {% if page > 1 %}
-                        <a href="{{ url_for('lucky_city', page=page-1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline mx-2">Previous Page</a>
-                    {% endif %}
-                    {% if total_matches > page * 10 %}
-                        <a href="{{ url_for('lucky_city', page=page+1, sort=sort_order, birth_date=birth_date, country=selected_country, state_country=selected_state) }}#city-results" class="text-blue-600 hover:underline mx-2">Next Page</a>
-                    {% endif %}
-                </div>
-            </section>
-
-            <!-- New Section: Discover More Luck -->
-            <section class="bg-white p-6 rounded-lg shadow-md mb-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Discover More Luck</h2>
-                <p class="mb-4">Found your lucky city? Keep exploring with these tools to boost your fortune and well-being!</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-lg font-medium mb-2 text-blue-800">Get Your Bazi Reading</h3>
-                        <p class="text-sm text-gray-600 mb-2">Uncover your Five Elements balance and personality insights.</p>
-                        <a href="https://www.yourluckycompass.com/bazi" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Try Bazi Reading</a>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-lg font-medium mb-2 text-blue-800">Find Your Lucky Direction</h3>
-                        <p class="text-sm text-gray-600 mb-2">Discover directions that enhance your success and energy.</p>
-                        <a href="https://www.yourluckycompass.com/lucky_compass" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Use Lucky Compass</a>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-md">
-                        <h3 class="text-lg font-medium mb-2 text-blue-800">Relax with Sound Bath</h3>
-                        <p class="text-sm text-gray-600 mb-2">Balance your energy with soothing sound meditations.</p>
-                        <a href="https://www.yourluckycompass.com/sound_bath" class="inline-block bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Start Sound Bath</a>
-                    </div>
-                </div>
-            </section>
-        {% endif %}
+        <section id="city-results" class="bg-white p-6 rounded-lg shadow-md mb-6 hidden">
+            <h2 class="text-xl font-semibold mb-4 text-blue-800">Database Matches (Page <span id="page"></span>)</h2>
+            <p class="mb-4">
+                Sort by Match Score:
+                <a id="sort-desc" class="text-blue-600 hover:underline">High to Low ↓</a>
+                |
+                <a id="sort-asc" class="text-blue-600 hover:underline">Low to High ↑</a>
+            </p>
+            <table class="w-full border-collapse" id="cities-table">
+                <tr class="bg-gray-50">
+                    <th class="border p-2 text-blue-800">City</th>
+                    <th class="border p-2 text-blue-800">State/Region</th>
+                    <th class="border p-2 text-blue-800">Country</th>
+                    <th class="border p-2 text-blue-800">Incorporation Date</th>
+                    <th class="border p-2 text-blue-800">Match Score</th>
+                    <th class="border p-2 text-blue-800">Lunar Mansion</th>
+                    <th class="border p-2 text-blue-800">Element</th>
+                    <th class="border p-2 text-blue-800">Description</th>
+                </tr>
+            </table>
+            <div class="pagination text-center mt-4">
+                <a id="prev-page" class="text-blue-600 hover:underline mx-2 hidden">Previous Page</a>
+                <a id="next-page" class="text-blue-600 hover:underline mx-2 hidden">Next Page</a>
+            </div>
+        </section>
 
         <!-- Ad Placeholder -->
         <div id="ad-placeholder" class="ad text-center text-gray-500 my-4">
-            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
             Ad Space - Coming Soon!
         </div>
 
@@ -208,6 +130,22 @@
     </div>
 
     <script>
+        async function loadCountries() {
+            try {
+                const response = await fetch('/api/lucky_city');
+                const data = await response.json();
+                const countrySelect = document.getElementById('country');
+                data.countries.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country;
+                    option.textContent = country;
+                    countrySelect.appendChild(option);
+                });
+            } catch (err) {
+                console.error('Failed to load countries:', err);
+            }
+        }
+
         function formatDateInput(input) {
             let value = input.value.replace(/[^0-9]/g, '');
             if (value.length > 4 && value.length <= 6) {
@@ -218,44 +156,151 @@
             input.value = value;
         }
 
-        // Update state/region options when country changes
-        document.addEventListener('DOMContentLoaded', function() {
-            const countrySelect = document.getElementById('country');
-            const stateSelect = document.getElementById('state_country');
-            
-            if (countrySelect && stateSelect) {
-                countrySelect.addEventListener('change', function() {
-                    this.form.method = 'POST';
-                    this.form.submit();
-                });
-            }
+        function resetForm() {
+            document.getElementById('lucky-city-form').reset();
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('user-info').classList.add('hidden');
+            document.getElementById('manual-result').classList.add('hidden');
+            document.getElementById('city-results').classList.add('hidden');
+            window.history.pushState({}, '', '/lucky_city');
+        }
 
-            // 新增：页面加载时如果有锚点，平滑滚动到指定位置
-            if (window.location.hash === '#city-results') {
-                setTimeout(() => {
-                    const target = document.querySelector('#city-results');
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop,
-                            behavior: 'smooth' // 平滑滚动效果
-                        });
-                    }
-                }, 100);
+        document.getElementById('lucky-city-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch('/api/lucky_city', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                
+                const errorDiv = document.getElementById('error');
+                const userInfo = document.getElementById('user-info');
+                const manualResult = document.getElementById('manual-result');
+                const cityResults = document.getElementById('city-results');
+                const citiesTable = document.getElementById('cities-table');
+                const pageSpan = document.getElementById('page');
+                const prevPage = document.getElementById('prev-page');
+                const nextPage = document.getElementById('next-page');
+                const sortDesc = document.getElementById('sort-desc');
+                const sortAsc = document.getElementById('sort-asc');
+                
+                errorDiv.classList.add('hidden');
+                userInfo.classList.add('hidden');
+                manualResult.classList.add('hidden');
+                cityResults.classList.add('hidden');
+                
+                if (!response.ok) {
+                    errorDiv.textContent = data.error;
+                    errorDiv.classList.remove('hidden');
+                    return;
+                }
+                
+                // Update user info
+                if (data.user_const && data.user_element) {
+                    document.getElementById('user-const').textContent = data.user_const;
+                    document.getElementById('user-element').textContent = data.user_element;
+                    userInfo.classList.remove('hidden');
+                }
+                
+                // Update manual result
+                if (data.manual_result) {
+                    document.getElementById('manual-result-row').innerHTML = `
+                        <td class="border p-2">${data.manual_result.city}</td>
+                        <td class="border p-2">${data.manual_result.date}</td>
+                        <td class="border p-2">${data.manual_result.score}%</td>
+                        <td class="border p-2">${data.manual_result.constellation}</td>
+                        <td class="border p-2">${data.manual_result.element}</td>
+                    `;
+                    manualResult.classList.remove('hidden');
+                }
+                
+                // Update city results
+                if (data.cities && data.cities.length > 0) {
+                    citiesTable.innerHTML = `
+                        <tr class="bg-gray-50">
+                            <th class="border p-2 text-blue-800">City</th>
+                            <th class="border p-2 text-blue-800">State/Region</th>
+                            <th class="border p-2 text-blue-800">Country</th>
+                            <th class="border p-2 text-blue-800">Incorporation Date</th>
+                            <th class="border p-2 text-blue-800">Match Score</th>
+                            <th class="border p-2 text-blue-800">Lunar Mansion</th>
+                            <th class="border p-2 text-blue-800">Element</th>
+                            <th class="border p-2 text-blue-800">Description</th>
+                        </tr>
+                    `;
+                    data.cities.forEach((city, index) => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="border p-2">${city.name}</td>
+                            <td class="border p-2">${city.state_country}</td>
+                            <td class="border p-2">${city.country}</td>
+                            <td class="border p-2">${city.incorporation_date}</td>
+                            <td class="border p-2">${city.match_score}%</td>
+                            <td class="border p-2">${city.constellation}</td>
+                            <td class="border p-2">${city.element}</td>
+                            <td class="border p-2">${city.description}</td>
+                        `;
+                        citiesTable.appendChild(row);
+                        if (index === 4) {
+                            const adRow = document.createElement('tr');
+                            adRow.innerHTML = '<td colspan="8" class="border p-2 text-center text-gray-500">Ad Space - Coming Soon!</td>';
+                            citiesTable.appendChild(adRow);
+                        }
+                    });
+                    pageSpan.textContent = data.page;
+                    prevPage.classList.toggle('hidden', data.page <= 1);
+                    nextPage.classList.toggle('hidden', data.total_matches <= data.page * 10);
+                    prevPage.href = `/lucky_city?page=${data.page - 1}&sort=${data.sort_order}&birth_date=${data.birth_date}&country=${data.selected_country}&state_country=${data.selected_state}#city-results`;
+                    nextPage.href = `/lucky_city?page=${data.page + 1}&sort=${data.sort_order}&birth_date=${data.birth_date}&country=${data.selected_country}&state_country=${data.selected_state}#city-results`;
+                    sortDesc.href = `/lucky_city?page=${data.page}&sort=desc&birth_date=${data.birth_date}&country=${data.selected_country}&state_country=${data.selected_state}#city-results`;
+                    sortAsc.href = `/lucky_city?page=${data.page}&sort=asc&birth_date=${data.birth_date}&country=${data.selected_country}&state_country=${data.selected_state}#city-results`;
+                    cityResults.classList.remove('hidden');
+                }
+                
+                // Update state select
+                const stateSelect = document.getElementById('state_country');
+                stateSelect.innerHTML = '<option value="All">All</option>';
+                data.states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    if (state === data.selected_state) option.selected = true;
+                    stateSelect.appendChild(option);
+                });
+            } catch (err) {
+                document.getElementById('error').textContent = 'An error occurred. Please try again.';
+                document.getElementById('error').classList.remove('hidden');
             }
         });
 
-        // Web Share API for sharing
-        async function shareSite() {
+        document.getElementById('country').addEventListener('change', async (e) => {
+            const form = document.getElementById('lucky-city-form');
+            const formData = new FormData(form);
             try {
-                await navigator.share({
-                    title: 'My Lucky City - Your Lucky Compass',
-                    text: 'Check out my lucky city match!',
-                    url: window.location.href
+                const response = await fetch('/api/lucky_city', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                const stateSelect = document.getElementById('state_country');
+                stateSelect.innerHTML = '<option value="All">All</option>';
+                data.states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateSelect.appendChild(option);
                 });
             } catch (err) {
-                alert('Share failed: ' + err);
+                console.error('Failed to update states:', err);
             }
-        }
+        });
+
+        // Load countries on page load
+        document.addEventListener('DOMContentLoaded', loadCountries);
     </script>
 </body>
 </html>
