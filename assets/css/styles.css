@@ -1,421 +1,138 @@
-/* 1. 基础重置：仅保留必要项，减少代码体积 */
-* {
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F8F9FA; /* Light gray-white */
+    color: #333;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    line-height: 1.6;
 }
 
-:root {
-    /* 定义全局变量，统一风格，便于修改 */
-    --color-purple: #2E1A47;
-    --color-gold: #FFD700;
-    --color-white: #FFFFFF;
-    --color-gray: #F5F5F5;
-    --color-text: #333333;
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Poppins', sans-serif;
-    --container-width: 1200px;
-    --spacing: 2rem;
+header {
+    background-color: #4A90E2; /* Soft blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-body {
-    font-family: var(--font-body);
-    color: var(--color-text);
-    background-color: var(--color-white);
-    line-height: 1.5;
-    scroll-behavior: smooth;
+nav {
+    background-color: #50C878; /* Mint green */
+    padding: 10px;
 }
 
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    color: var(--color-purple);
-    line-height: 1.2;
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
 }
 
-/* 2. 容器类：统一页面宽度，避免重复代码 */
-.container {
-    width: 90%;
-    max-width: var(--container-width);
+section {
+    padding: 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 3. 按钮样式：参考 Shein 简洁渐变，增强醒目度 */
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    border-radius: 50px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2); /* 新增：默认轻微阴影，更醒目 */
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--color-gold), #FFC107);
-    color: var(--color-purple);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4); /* 增强：hover 阴影更深，突出交互 */
-}
-
-.btn-outline {
-    border: 1px solid var(--color-purple);
-    color: var(--color-purple);
-}
-
-.btn-outline:hover {
-    background-color: var(--color-purple);
-    color: var(--color-white);
-}
-
-/* 4. 导航栏：极简设计，参考 SSENSE */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    z-index: 1000;
-    padding: 1rem 0;
-}
-
-.site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    color: var(--color-purple);
-    text-decoration: none;
-}
-
-/* 桌面端导航：仅横向排列，无多余样式 */
-.desktop-nav {
-    display: flex;
-    gap: 2rem;
-}
-
-.desktop-nav a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.3s ease;
-}
-
-.desktop-nav a:hover {
-    color: var(--color-gold);
-}
-
-/* 移动端汉堡菜单：简洁图标，无多余装饰 */
-.hamburger {
-    display: none;
-    background: none;
+button, input[type="submit"] {
+    background-color: #FFD700; /* Golden yellow */
+    color: #333;
     border: none;
-    font-size: 1.2rem;
-    color: var(--color-purple);
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* 移动端折叠菜单：默认隐藏，激活时显示 */
-.mobile-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-white);
-    display: none;
+button:hover, input[type="submit"]:hover {
+    background-color: #FFC300;
+}
+
+form {
+    display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    gap: 10px;
 }
 
-.mobile-nav.active {
-    display: flex;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
 }
 
-.mobile-nav a {
-    color: var(--color-text);
-    text-decoration: none;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--color-gray);
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
-.mobile-nav a:last-child {
-    border-bottom: none;
+th {
+    background-color: #4A90E2;
+    color: white;
 }
 
-/* 5. Hero 区域：核心修改！图片淡色背景+内容悬浮 */
-.hero {
-    margin-top: 60px; /* 避开固定导航 */
-    min-height: calc(100vh - 60px); /* 占满屏幕剩余高度，手机端也全屏 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* 作为子元素定位的容器 */
-    padding: var(--spacing);
+footer {
+    background-color: #4A90E2;
+    color: white;
     text-align: center;
-}
-
-/* 图片容器：叠加半透明遮罩，实现淡色效果 */
-.hero-visual {
-    position: absolute; /* 绝对定位，作为背景 */
-    top: 0;
-    left: 0;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1; /* 放在最底层，不遮挡内容 */
-    overflow: hidden;
-    contain: layout paint; 
 }
 
-/* 关键：添加半透明遮罩，压暗图片，颜色呼应品牌深紫 */
-.hero-visual::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(46, 26, 71, 0.4); /* 深紫半透明，数值越小越淡 */
-    z-index: 1;
-}
-
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 保持图片比例，铺满屏幕，手机端也适配 */
-    object-position: center; /* 图片核心内容居中，避免裁剪关键部分 */
-}
-
-/* Hero 内容：悬浮在背景上，文字改为白色更醒目 */
-.hero-content {
-    max-width: 700px; /* 限制宽度，避免文字过宽 */
-    z-index: 2; /* 确保在遮罩上方 */
-}
-
-.hero h1 {
-    font-size: 2.8rem; /* 适当放大标题，增强视觉焦点 */
-    color: var(--color-white); /* 文字改为白色，与淡色背景对比强烈 */
-    margin-bottom: 1rem;
-}
-
-.hero h1 span {
-    color: var(--color-gold); /* 金色强调，保留品牌识别 */
-}
-
-.hero p {
-    max-width: 500px;
-    font-size: 1.1rem;
-    color: var(--color-white); /* 描述文字也改白色，提升可读性 */
-    margin: 0 auto 2rem; /* 居中+增加按钮间距 */
-}
-
-/* 6. 功能区：参考 ASOS 卡片，但简化样式 */
-.features {
-    padding: 4rem 0;
-    background-color: var(--color-gray);
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.feature-card {
-    background-color: var(--color-white);
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--color-text);
-    transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-}
-
-.card-img {
-    width: 100%;
-    height: 180px; /* 固定图片高度，保持统一 */
-    object-fit: cover;
-}
-
-.feature-card h3 {
-    padding: 1rem;
-    font-size: 1.1rem;
-}
-
-.feature-card p {
-    padding: 0 1rem 1.5rem;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* 7. 关于我们：简洁文本，居中布局 */
-.about {
-    padding: 4rem 0;
-    text-align: center;
-}
-
-.about h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.about p {
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    font-size: 1rem;
-}
-
-/* 8. 博客区：简化布局，减少加载压力 */
-.blog {
-    padding: 4rem 0;
-    background-color: var(--color-gray);
-}
-
-.blog h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.blog-card {
-    background-color: var(--color-white);
-    padding: 2rem;
-    border-radius: 8px;
-}
-
-.blog-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.blog-card p {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 1.5rem;
-}
-
-.read-more {
-    color: var(--color-purple);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.read-more:hover {
-    color: var(--color-gold);
-}
-
-/* 9. 页脚：参考 Gap 简洁布局 */
-.site-footer {
-    padding: 3rem 0;
-    background-color: var(--color-purple);
-    color: var(--color-white);
-}
-
-.footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.site-footer .logo {
-    color: var(--color-white);
-    font-size: 1.2rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-links a {
-    color: var(--color-white);
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--color-gold);
-}
-
-.footer-bottom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.footer-bottom a {
-    color: var(--color-white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-bottom a:hover {
-    color: var(--color-gold);
-}
-
-.footer-bottom p {
-    margin-top: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* 10. 移动端适配：重点优化 Hero 区域 */
+/* Responsive Design */
 @media (max-width: 768px) {
-    /* 隐藏桌面导航，显示汉堡菜单 */
-    .desktop-nav {
-        display: none;
-    }
-    .hamburger {
+    nav a {
         display: block;
+        margin: 10px 0;
     }
-
-    /* Hero 区域：调整标题大小，保持手机端美观 */
-    .hero h1 {
-        font-size: 2.2rem;
+    table {
+        font-size: 14px;
     }
-    .hero p {
-        font-size: 1rem;
-    }
-
-    /* 功能区和博客区：移动端单列布局，减少拥挤 */
-    .feature-grid, .blog-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* 页脚：顶部改为垂直排列 */
-    .footer-top {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
+    section {
+        padding: 10px;
     }
 }
 
-/* 11. 性能优化：禁用不必要的动画，减少重排 */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-        animation: none !important;
-    }
+/* Animations for engagement */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+section {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Compass specific (for zhinanzhenindex.html) */
+.compass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: #50C878;
+    border-radius: 50%;
+    margin: 20px auto;
+    width: 200px;
+}
+
+/* Blog specific */
+.blog-article {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.blog-article h3 {
+    color: #4A90E2;
+}
+
+/* Ad placeholder */
+.ad {
+    margin: 20px auto;
+    text-align: center;
+    background: #eee;
+    padding: 10px;
+    border: 1px dashed #ccc;
 }
