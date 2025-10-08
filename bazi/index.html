@@ -7,7 +7,7 @@
     <meta name="keywords" content="Chinese astrology, five elements calculator, Bazi reading, destiny insights, zodiac forecast">
     <title>Five Elements Destiny Calculator - Your Lucky Compass</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Unified CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
     <!-- Navigation Bar -->
@@ -29,7 +29,7 @@
             <p class="mb-4">Feeling off-balance? Ancient Chinese wisdom links your birth to nature's cycles and the Five Elements (Wood, Fire, Earth, Metal, Water). These shape your traits, relationships, and life path.</p>
             <p class="mb-4 font-semibold">Take this quick free quiz to find your elemental profile. No strings attached!</p>
 
-            <form action="/bazi/calculate" method="POST" class="space-y-4">
+            <form id="bazi-form" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label for="year" class="block text-sm font-medium">Birth Year</label>
@@ -53,11 +53,16 @@
 
                 <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Get My Results Now</button>
             </form>
+
+            <div id="result" class="mt-4 hidden">
+                <h2 class="text-xl font-semibold mb-4 text-blue-800">Your Bazi Report</h2>
+                <div id="report-content"></div>
+            </div>
+            <div id="error" class="mt-4 text-red-600 hidden"></div>
         </section>
 
         <!-- Ad Placeholder -->
         <div id="ad-placeholder" class="ad">
-            <!-- PropellerAds or AdMaven code goes here later. For now, it's empty. -->
             Ad Space - Coming Soon!
         </div>
 
@@ -67,34 +72,47 @@
         </footer>
     </div>
 
-    <!-- Share and Add to Home Screen JS -->
     <script>
-        // For adding to home screen (PWA prompt)
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            deferredPrompt = e;
-        });
-        function promptInstall() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-            } else {
-                alert('Add our site to your home screen from your browser menu!');
-            }
-        }
-
-        // For sharing (Web Share API)
-        async function shareSite() {
+        document.getElementById('bazi-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            
             try {
-                await navigator.share({
-                    title: 'Your Lucky Compass - Bazi Quiz',
-                    text: 'Discover your five elements balance!',
-                    url: window.location.href
+                const response = await fetch('/api/bazi/calculate', {
+                    method: 'POST',
+                    body: formData
                 });
-                // 可以调用 /record_share 如果需要记录
+                const data = await response.json();
+                
+                const resultDiv = document.getElementById('result');
+                const errorDiv = document.getElementById('error');
+                const reportContent = document.getElementById('report-content');
+                
+                errorDiv.classList.add('hidden');
+                resultDiv.classList.add('hidden');
+                
+                if (response.ok) {
+                    // 假设 report 包含八字报告的具体字段，根据实际返回调整
+                    reportContent.innerHTML = `
+                        <p><strong>Name:</strong> ${data.report.name || 'Friend'}</p>
+                        <p><strong>Year:</strong> ${data.report.year}</p>
+                        <p><strong>Month:</strong> ${data.report.month}</p>
+                        <p><strong>Day:</strong> ${data.report.day}</p>
+                        <p><strong>Hour:</strong> ${data.report.hour || 'Not provided'}</p>
+                        <p><strong>Element:</strong> ${data.report.element}</p>
+                        <!-- 根据 generate_bazi_report 的返回值添加更多字段 -->
+                    `;
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    errorDiv.textContent = data.error;
+                    errorDiv.classList.remove('hidden');
+                }
             } catch (err) {
-                alert('Share failed: ' + err);
+                document.getElementById('error').textContent = 'An error occurred. Please try again.';
+                document.getElementById('error').classList.remove('hidden');
             }
-        }
+        });
     </script>
 </body>
 </html>
