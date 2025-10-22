@@ -1,0 +1,2 @@
+User-agent: *
+Allow: /sound-bath/audio/
